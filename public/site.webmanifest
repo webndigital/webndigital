@@ -44,22 +44,6 @@
   "categories": ["business", "technology", "productivity"],
   "lang": "en-US",
   "dir": "ltr",
-  "scope": "/",
-  "screenshots": [
-    {
-      "src": "/screenshots/desktop.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "WebnDigital Homepage"
-    },
-    {
-      "src": "/screenshots/mobile.png",
-      "sizes": "750x1334",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "WebnDigital Mobile"
-    }
-  ]
+  "scope": "/"
 }
 
