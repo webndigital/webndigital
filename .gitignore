@@ -26,3 +26,4 @@ dist/
 *.swp
 *.swo
 *~.vercel
+.vercel
