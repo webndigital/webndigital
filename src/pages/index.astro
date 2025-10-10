@@ -1300,20 +1300,42 @@ const homepageSchema = {
     
     if (!track || !prevBtn || !nextBtn || !dotsContainer || !wrapper) return;
     
-    const itemsPerPage = 4;
     const totalItems = track.children.length;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
     let currentPage = 0;
     
-    // Hide navigation buttons if items <= 4
-    if (totalItems <= 4) {
-      prevBtn.style.display = 'none';
-      nextBtn.style.display = 'none';
-      dotsContainer.style.display = 'none';
-      return; // Don't initialize carousel functionality
+    // Get items per page based on screen size
+    function getItemsPerPage() {
+      const width = window.innerWidth;
+      if (width <= 480) return 1;      // Mobile: 1 card
+      if (width <= 768) return 2;      // Tablet: 2 cards
+      return 4;                        // Desktop: 4 cards
+    }
+    
+    // Check if navigation should be visible
+    function shouldShowNavigation() {
+      const itemsPerPage = getItemsPerPage();
+      return totalItems > itemsPerPage;
+    }
+    
+    function updateNavigationVisibility() {
+      const shouldShow = shouldShowNavigation();
+      prevBtn.style.display = shouldShow ? '' : 'none';
+      nextBtn.style.display = shouldShow ? '' : 'none';
+      dotsContainer.style.display = shouldShow ? '' : 'none';
     }
     
     function updateCarousel() {
+      const itemsPerPage = getItemsPerPage();
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      
+      // Ensure currentPage is within bounds
+      if (currentPage >= totalPages) {
+        currentPage = totalPages - 1;
+      }
+      if (currentPage < 0) {
+        currentPage = 0;
+      }
+      
       // Grid için container genişliği + gap kadar kaydır
       const containerWidth = wrapper.offsetWidth;
       const offset = currentPage * containerWidth;
@@ -1324,11 +1346,19 @@ const homepageSchema = {
       prevBtn.disabled = currentPage === 0;
       nextBtn.disabled = currentPage === totalPages - 1;
       
-      // Update dots
-      const dots = dotsContainer.querySelectorAll('.dot');
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentPage);
+      // Update dots - show/hide based on total pages
+      const allDots = dotsContainer.querySelectorAll('.dot');
+      allDots.forEach((dot, index) => {
+        if (index < totalPages) {
+          (dot as HTMLElement).style.display = '';
+          dot.classList.toggle('active', index === currentPage);
+        } else {
+          (dot as HTMLElement).style.display = 'none';
+        }
       });
+      
+      // Update navigation visibility
+      updateNavigationVisibility();
     }
     
     prevBtn.addEventListener('click', () => {
@@ -1339,6 +1369,8 @@ const homepageSchema = {
     });
     
     nextBtn.addEventListener('click', () => {
+      const itemsPerPage = getItemsPerPage();
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
       if (currentPage < totalPages - 1) {
         currentPage++;
         updateCarousel();
@@ -1346,12 +1378,13 @@ const homepageSchema = {
     });
     
     // Dot navigation
-    const dots = dotsContainer.querySelectorAll('.dot');
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentPage = index;
-        updateCarousel();
-      });
+    dotsContainer.addEventListener('click', (e) => {
+      const dot = (e.target as HTMLElement).closest('.dot');
+      if (!dot) return;
+      
+      const index = parseInt(dot.getAttribute('data-index') || '0');
+      currentPage = index;
+      updateCarousel();
     });
     
     // Update on resize
@@ -1364,8 +1397,11 @@ const homepageSchema = {
       }, 100);
     });
     
-    // İlk yüklemede biraz bekle ki kartlar render olsun
-    setTimeout(updateCarousel, 100);
+    // Initial update - wait for DOM to be ready
+    setTimeout(() => {
+      updateNavigationVisibility();
+      updateCarousel();
+    }, 50);
   }
   
   // Initialize carousels
