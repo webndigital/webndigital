@@ -441,6 +441,15 @@ const contactSchema = {
   
   .form-group select {
     cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23767676' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 3rem;
+  }
+  
+  .form-group select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%230091FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   }
   
   .form-group textarea {
@@ -560,6 +569,12 @@ const contactSchema = {
   @media (max-width: 768px) {
     .contact-form-wrapper {
       padding: 2rem;
+    }
+    
+    .form-group select {
+      padding: 1.25rem 3rem 1.25rem 1rem;
+      font-size: 1rem;
+      min-height: 52px;
     }
 
     .customers-slide {
