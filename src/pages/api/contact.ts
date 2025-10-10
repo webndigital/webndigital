@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
 
 export const prerender = false;
 
@@ -47,8 +46,11 @@ export const POST: APIRoute = async ({ request }) => {
       timestamp: new Date().toISOString()
     });
 
+    // Dynamically import nodemailer (server-side only)
+    const nodemailer = await import('nodemailer');
+    
     // Configure nodemailer transporter for Gmail
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.default.createTransport({
       service: 'gmail',
       auth: {
         user: emailUser,

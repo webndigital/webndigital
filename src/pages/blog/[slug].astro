@@ -1,23 +1,25 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const blogFiles = await import.meta.glob('../../content/blog/*.json');
   
   const posts = await Promise.all(
     Object.entries(blogFiles).map(async ([path, loader]) => {
-      const post = await loader();
+      const post: any = await loader();
       return post.default;
     })
   );
   
-  return posts.map((post) => ({
+  return posts.map((post: any) => ({
     params: { slug: post.slug },
     props: { post }
   }));
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props as { post: any };
 const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',

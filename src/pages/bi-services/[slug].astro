@@ -3,6 +3,8 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import type { GetStaticPaths } from 'astro';
 import { biServiceContent } from '@/data/biServiceContent';
 
+export const prerender = true;
+
 export function getStaticPaths() {
   return Object.keys(biServiceContent).map((slug) => ({
     params: { slug },
