@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^7.8.1",
     "astro": "^4.16.0",
     "nodemailer": "^6.9.15",
     "openai": "^6.2.0"

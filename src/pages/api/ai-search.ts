@@ -25,15 +25,15 @@ const routes = [
   }
 ];
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.OPENAI_API_KEY
-});
-
 // Prerender this route as server-rendered
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // Initialize OpenAI inside the function
+    const openai = new OpenAI({
+      apiKey: import.meta.env.OPENAI_API_KEY
+    });
     let query: string;
     
     // Try to parse JSON

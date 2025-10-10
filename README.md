@@ -1,18 +1,79 @@
-# WebnDigital - Digital Agency Website
+# WebnDigital
 
-A modern, multi-page digital agency website built with Astro, featuring AI solutions, custom cursor effects, and a dynamic blog system.
+Modern and professional website for WebnDigital - AI Solutions & Digital Transformation Company.
 
-## 🚀 Features
+## 🚀 Tech Stack
 
-- **Multi-page Architecture**: Home, Services, Portfolio, Blog, Contact
-- **Static Site Generation (SSG)**: Blazing fast performance
-- **Blog System**: Local JSON-based blog with dynamic routing
-- **Custom Cursor Effects**: Smooth, interactive cursor animations
-- **FAQ Widget**: Expandable "How can we help you?" panel
-- **Contact Form**: Gmail SMTP integration
-- **SEO Optimized**: Meta tags, Open Graph, sitemap, JSON-LD schema
-- **Responsive Design**: Mobile-first approach
-- **TypeScript**: Type-safe development
+- **Framework**: Astro 4.16 (Hybrid Mode)
+- **Deployment**: Vercel (Serverless)
+- **AI**: OpenAI GPT-3.5 for smart FAQ routing
+- **Email**: Nodemailer for contact form
+- **Styling**: Custom CSS with responsive design
+
+## 📦 Installation
+
+```bash
+npm install
+```
+
+## 🔧 Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+# OpenAI API Key for AI-powered FAQ
+# Get your API key from: https://platform.openai.com/api-keys
+OPENAI_API_KEY=sk-...
+
+# Email Configuration for contact form
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASSWORD=your-app-password
+```
+
+### Getting OpenAI API Key:
+
+1. Go to https://platform.openai.com/api-keys
+2. Sign in or create an account
+3. Click "Create new secret key"
+4. Copy the key and add it to `.env`
+
+### Gmail App Password (for contact form):
+
+1. Enable 2-Step Verification on your Google Account
+2. Go to https://myaccount.google.com/apppasswords
+3. Generate an app password for "Mail"
+4. Use this 16-character password in `.env`
+
+## 🛠️ Development
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:4321](http://localhost:4321) in your browser.
+
+## 🏗️ Build
+
+```bash
+npm run build
+```
+
+## 🌐 Deployment on Vercel
+
+1. Push your code to GitHub
+2. Import the project on Vercel
+3. Add environment variables in Vercel Dashboard:
+   - `OPENAI_API_KEY`
+   - `EMAIL_USER`
+   - `EMAIL_PASSWORD`
+4. Deploy!
+
+### Important Vercel Settings:
+
+- **Framework**: Astro
+- **Build Command**: `npm run build`
+- **Output Directory**: `.vercel/output`
+- **Install Command**: `npm install`
 
 ## 📁 Project Structure
 
@@ -20,74 +81,32 @@ A modern, multi-page digital agency website built with Astro, featuring AI solut
 /
 ├── public/
 │   ├── images/          # Static images
-│   └── favicon.svg
+│   ├── favicon.ico/     # Favicon files
+│   └── ...
 ├── src/
 │   ├── components/      # Reusable components
 │   ├── layouts/         # Page layouts
-│   ├── pages/           # File-based routing
+│   ├── pages/           # Page routes
+│   │   ├── api/         # API endpoints (serverless)
+│   │   └── ...
 │   ├── content/         # Blog posts (JSON)
-│   ├── utils/           # Utility functions
-│   ├── CursorRules/     # Custom cursor effects
+│   ├── data/            # Content data
 │   └── styles/          # Global styles
+├── astro.config.mjs     # Astro configuration
 └── package.json
 ```
 
-## 🛠️ Tech Stack
+## ✨ Features
 
-- **Framework**: Astro 4.x
-- **Language**: TypeScript
-- **Styling**: CSS (with custom properties)
-- **Email**: Nodemailer (Gmail SMTP)
-- **Fonts**: IBM Plex Sans, EB Garamond
-
-## 📦 Installation
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## 🔧 Configuration
-
-1. Copy `.env.example` to `.env`
-2. Configure Gmail SMTP credentials
-3. Update `astro.config.mjs` with your domain
-
-## 📝 Content Management
-
-### Adding Blog Posts
-
-Create JSON files in `src/content/blog/`:
-
-```json
-{
-  "slug": "post-slug",
-  "title": "Post Title",
-  "excerpt": "Short description...",
-  "date": "2024-10-07",
-  "author": "Author Name",
-  "image": "/images/blog/post-image.jpg",
-  "content": "Full content in markdown or HTML..."
-}
-```
-
-## 🎨 Design System
-
-Based on Figma design with:
-- Gradient: `linear-gradient(0deg, #32C5FF 0%, #6236FF 65%)`
-- Primary: `#0091FF`
-- Accent: `#3B43F2`
-- Typography: IBM Plex Sans + EB Garamond
+- 🤖 AI-powered FAQ with smart routing
+- 📱 Fully responsive mobile design
+- 🎨 Modern and professional UI/UX
+- 📧 Contact form with email integration
+- 📝 Blog system with SEO optimization
+- 🔍 SEO-friendly with meta tags and JSON-LD
+- ⚡ Fast loading with static pre-rendering
+- 🌐 Hybrid rendering (static pages + serverless API)
 
 ## 📄 License
 
-All rights reserved © 2024 WebnDigital
+© 2025 WebnDigital. All rights reserved.
