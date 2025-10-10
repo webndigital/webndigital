@@ -1,0 +1,330 @@
+---
+const navItems = [
+  { label: 'WebnDigital', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Case History', href: '/portfolio' },
+  { label: 'Solutions', href: '/services' },
+  { label: 'Magazine', href: '/blog' },
+  { label: 'Contacts', href: '/contact' }
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="/" class="logo">
+        <img src="/favicon.ico/apple-icon-76x76.png" alt="WebnDigital" class="logo-icon" />
+      </a>
+      
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li class="nav-item">
+            <a 
+              href={item.href} 
+              class:list={['nav-link', { active: currentPath === item.href }]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9000;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border-light);
+    transition: all var(--transition-base);
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px;
+    gap: 2rem;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-black);
+    transition: transform var(--transition-base);
+  }
+  
+  .logo-icon {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    transition: transform var(--transition-base);
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    margin-left: auto;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-black);
+    transition: all var(--transition-base);
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-primary);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 2px;
+    background-color: var(--color-black);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    opacity: 1;
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+  }
+  
+  .mobile-menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-black);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  
+  .mobile-menu-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  
+  .mobile-menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  
+  .mobile-menu-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  
+  @media (max-width: 1024px) {
+    .nav {
+      height: 70px;
+    }
+    
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .nav-list {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border-light);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-left: 0;
+      z-index: 9001;
+    }
+    
+    .nav-list.open {
+      max-height: calc(100vh - 70px);
+      opacity: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-item {
+      width: 100%;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    
+    .nav-item:last-child {
+      border-bottom: none;
+    }
+    
+    .nav-link {
+      width: 100%;
+      height: auto;
+      padding: 1rem 2rem;
+      font-size: 0.875rem;
+      justify-content: flex-start;
+    }
+    
+    .nav-link::after {
+      display: none;
+    }
+    
+    .nav-link.active {
+      background: var(--color-bg-light);
+    }
+    
+    .mobile-menu-toggle {
+      display: flex;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav {
+      height: 60px;
+    }
+    
+    .logo svg {
+      width: 140px;
+      height: 28px;
+    }
+    
+    .nav-list {
+      top: 60px;
+    }
+    
+    .nav-link {
+      padding: 0.875rem 1.5rem;
+      font-size: 0.8125rem;
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const toggle = document.querySelector('.mobile-menu-toggle') as HTMLButtonElement;
+  const navList = document.querySelector('.nav-list') as HTMLElement;
+  const navLinks = document.querySelectorAll('.nav-link') as NodeListOf<HTMLAnchorElement>;
+  
+  function closeMenu() {
+    navList?.classList.remove('open');
+    toggle?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  
+  function openMenu() {
+    navList?.classList.add('open');
+    toggle?.classList.add('open');
+    if (window.innerWidth <= 1024) {
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  if (toggle && navList) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navList.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+    
+    // Close menu when clicking nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (navList.classList.contains('open') && 
+          !navList.contains(e.target as Node) && 
+          !toggle.contains(e.target as Node)) {
+        closeMenu();
+      }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navList.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+    
+    // Handle resize
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth > 1024) {
+          closeMenu();
+        }
+      }, 250);
+    });
+  }
+  
+  // Header scroll effect
+  let lastScroll = 0;
+  const header = document.querySelector('.header') as HTMLElement;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+</script>

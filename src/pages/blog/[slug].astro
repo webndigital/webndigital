@@ -1,0 +1,337 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const blogFiles = await import.meta.glob('../../content/blog/*.json');
+  
+  const posts = await Promise.all(
+    Object.entries(blogFiles).map(async ([path, loader]) => {
+      const post = await loader();
+      return post.default;
+    })
+  );
+  
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout
+  title={post.title}
+  description={post.excerpt}
+  image={post.image}
+  type="article"
+>
+  <article class="blog-post">
+    <!-- Hero Image -->
+    <div class="post-hero">
+      <img src={post.image} alt={post.title} class="post-hero-image" />
+    </div>
+    
+    <div class="container">
+      <div class="post-container">
+        <!-- Post Header -->
+        <header class="post-header">
+          <div class="post-meta">
+            <span class="post-category">{post.category}</span>
+            <time datetime={post.date} class="post-date">{formattedDate}</time>
+          </div>
+          <h1 class="post-title">{post.title}</h1>
+          {post.author && (
+            <p class="post-author">By {post.author}</p>
+          )}
+        </header>
+        
+        <!-- Post Content -->
+        <div class="post-content" set:html={post.content} />
+        
+        <!-- Post Footer -->
+        <footer class="post-footer">
+          <div class="post-share">
+            <h3>Share this article</h3>
+            <div class="share-buttons">
+              <a 
+                href={`https://twitter.com/intent/tweet?url=${Astro.url}&text=${post.title}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="share-btn"
+                aria-label="Share on Twitter"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                </svg>
+              </a>
+              <a 
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${Astro.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="share-btn"
+                aria-label="Share on LinkedIn"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </a>
+              <a 
+                href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="share-btn"
+                aria-label="Share on Facebook"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <div class="post-navigation">
+            <a href="/blog" class="btn btn-primary">
+              ← Back to Magazine
+            </a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </article>
+  
+  <!-- Related CTA -->
+  <section class="post-cta section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Interested in similar solutions?</h2>
+        <p class="cta-text">Let's discuss how we can help your business succeed.</p>
+        <a href="/contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-top: 0;
+  }
+  
+  .post-hero {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    background: var(--color-bg-light);
+  }
+  
+  .post-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+  
+  .post-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .post-category {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-white);
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+  }
+  
+  .post-date {
+    font-size: 0.875rem;
+    color: var(--color-text-gray);
+  }
+  
+  .post-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .post-author {
+    font-size: 1rem;
+    color: var(--color-text-gray);
+  }
+  
+  .post-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-black);
+  }
+  
+  .post-content :global(h2) {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    color: var(--color-black);
+  }
+  
+  .post-content :global(h3) {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+    color: var(--color-black);
+  }
+  
+  .post-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+  
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+  
+  .post-content :global(li) {
+    margin-bottom: 0.75rem;
+  }
+  
+  .post-content :global(strong) {
+    font-weight: 600;
+    color: var(--color-black);
+  }
+  
+  .post-content :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  
+  .post-content :global(a:hover) {
+    color: var(--color-accent);
+  }
+  
+  .post-footer {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-border-light);
+  }
+  
+  .post-share {
+    margin-bottom: 2rem;
+  }
+  
+  .post-share h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .share-buttons {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bg-light);
+    color: var(--color-text-gray);
+    transition: all var(--transition-base);
+  }
+  
+  .share-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+  }
+  
+  .post-cta {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    text-align: center;
+  }
+  
+  .cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .cta-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+  
+  .cta-content .btn {
+    background: var(--color-white);
+    color: var(--color-primary);
+  }
+  
+  @media (max-width: 768px) {
+    .post-hero {
+      height: 300px;
+    }
+    
+    .post-container {
+      padding: 2rem 0;
+    }
+    
+    .post-content {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "image": post.image,
+  "datePublished": post.date,
+  "author": {
+    "@type": "Person",
+    "name": post.author || "WebnDigital Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "WebnDigital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${Astro.site}favicon.svg`
+    }
+  },
+  "description": post.excerpt
+})} />

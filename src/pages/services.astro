@@ -1,0 +1,595 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SolutionCard from '@components/SolutionCard.astro';
+
+const services = {
+  web: {
+    title: 'Web & Mobile App Solutions',
+    description: 'Professional web design, mobile app development, and system integration services tailored to your industry. From custom designs to enterprise solutions, we create digital experiences that drive results.',
+    items: [
+      {
+        id: 'custom',
+        slug: 'custom-web-design',
+        title: 'Custom Web Design',
+        description: 'Unique, tailor-made websites crafted specifically for your brand identity and business goals.',
+        image: '/images/ecommerce-custom.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'restaurant-cafe',
+        slug: 'restaurant-cafe-websites',
+        title: 'Restaurant & Cafe',
+        description: 'Mouth-watering websites for restaurants and cafes with online menus, reservations, and ordering.',
+        image: '/images/pagamento.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'kurumsal',
+        slug: 'corporate-websites',
+        title: 'Corporate Websites',
+        description: 'Professional corporate websites that establish authority and build trust with your audience.',
+        image: '/images/magazzino.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'girisim',
+        slug: 'startup-websites',
+        title: 'Startup MVP',
+        description: 'Fast, lean, and impactful websites for startups ready to make their mark in the market.',
+        image: '/images/ios.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'sanayi',
+        slug: 'industrial-websites',
+        title: 'Industrial & Manufacturing',
+        description: 'Robust websites for industrial companies showcasing products, capabilities, and certifications.',
+        image: '/images/assistenti.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'mimarlik',
+        slug: 'architecture-websites',
+        title: 'Architecture & Design',
+        description: 'Visually stunning portfolio websites for architects and interior designers.',
+        image: '/images/raccomandazione.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'urun-tanitim',
+        slug: 'product-showcase',
+        title: 'Product Showcase',
+        description: 'Engaging product presentation websites that highlight features and drive conversions.',
+        image: '/images/sentiment.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'e-ticaret',
+        slug: 'ecommerce-solutions',
+        title: 'E-commerce Platform',
+        description: 'Complete online store solutions with shopping cart, payment gateway, and inventory management.',
+        image: '/images/forecasting.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'cms',
+        slug: 'cms-solutions',
+        title: 'CMS Solutions',
+        description: 'Flexible content management systems that empower you to update your website easily.',
+        image: '/images/planning.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'ios-app',
+        slug: 'ios-app-development',
+        title: 'iOS App Development',
+        description: 'Premium native iOS applications built with Swift and SwiftUI for exceptional performance.',
+        image: '/images/ios.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'android-app',
+        slug: 'android-app-development',
+        title: 'Android App Development',
+        description: 'Powerful native Android apps built with Kotlin, reaching billions of users worldwide.',
+        image: '/images/dashboard.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'cross-platform',
+        slug: 'cross-platform-apps',
+        title: 'Cross-Platform Apps',
+        description: 'Efficient React Native or Flutter apps that work beautifully on both iOS and Android.',
+        image: '/images/code-is-yours.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'pwa',
+        slug: 'progressive-web-apps',
+        title: 'Progressive Web Apps',
+        description: 'Modern web applications that work offline and feel like native apps without app stores.',
+        image: '/images/tailored-software.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'payment',
+        slug: 'payment-integration',
+        title: 'Payment Integration',
+        description: 'Secure payment gateway integration with Stripe, PayPal, and other leading providers.',
+        image: '/images/pagamento.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'inventory',
+        slug: 'inventory-systems',
+        title: 'Inventory Systems',
+        description: 'Smart inventory management solutions for real-time tracking and automated reordering.',
+        image: '/images/magazzino.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      },
+      {
+        id: 'fikir-sizden',
+        slug: 'custom-solutions',
+        title: 'Your Idea, Our Solution',
+        description: 'Have a unique concept? We turn your innovative ideas into reality with custom development.',
+        image: '/images/ai-algorithms.png',
+        color: 'rgba(0, 145, 255, 0.67)'
+      }
+    ]
+  },
+  ai: {
+    title: 'Artificial Intelligence Solutions',
+    description: 'Intelligent AI solutions that automate processes, provide insights, and enhance decision-making capabilities.',
+    items: [
+      {
+        id: 'ai-assistants',
+        slug: 'ai-assistants',
+        title: 'AI Assistants',
+        description: 'Intelligent virtual assistants that automate tasks and enhance customer experience 24/7.',
+        image: '/images/assistenti.png',
+        color: 'rgba(147, 51, 234, 0.67)'
+      },
+      {
+        id: 'ai-recommendations',
+        slug: 'ai-recommendations',
+        title: 'Recommendation Systems',
+        description: 'Personalized recommendation engines that increase engagement and drive sales.',
+        image: '/images/raccomandazione.png',
+        color: 'rgba(147, 51, 234, 0.67)'
+      },
+      {
+        id: 'ai-sentiment',
+        slug: 'ai-sentiment-analysis',
+        title: 'Sentiment Analysis',
+        description: 'Understand customer emotions and opinions at scale with AI-powered sentiment analysis.',
+        image: '/images/sentiment.png',
+        color: 'rgba(147, 51, 234, 0.67)'
+      },
+      {
+        id: 'ai-forecasting',
+        slug: 'ai-forecasting',
+        title: 'AI Forecasting',
+        description: 'Predict future trends and make data-driven decisions with advanced forecasting models.',
+        image: '/images/forecasting.png',
+        color: 'rgba(147, 51, 234, 0.67)'
+      }
+    ]
+  },
+  advertising: {
+    title: 'Advertising & Marketing Solutions',
+    description: 'Strategic digital advertising campaigns that reach your target audience and maximize ROI across all platforms.',
+    items: [
+      {
+        id: 'google-ads',
+        slug: 'google-ads',
+        title: 'Google Ads',
+        description: 'Professional Google Ads management that drives qualified traffic and maximizes your return on investment.',
+        image: '/images/planning.png',
+        color: 'rgba(16, 185, 129, 0.67)'
+      },
+      {
+        id: 'instagram-ads',
+        slug: 'instagram-ads',
+        title: 'Instagram Advertising',
+        description: 'Eye-catching Instagram ad campaigns that capture attention on the world\'s most visual platform.',
+        image: '/images/finance.png',
+        color: 'rgba(16, 185, 129, 0.67)'
+      },
+      {
+        id: 'facebook-ads',
+        slug: 'facebook-ads',
+        title: 'Facebook Advertising',
+        description: 'Targeted Facebook campaigns that leverage advanced targeting to reach your ideal customers.',
+        image: '/images/logistica.png',
+        color: 'rgba(16, 185, 129, 0.67)'
+      },
+      {
+        id: 'budget-management',
+        slug: 'budget-management',
+        title: 'Budget Management',
+        description: 'Strategic budget allocation across platforms to maximize advertising ROI and eliminate waste.',
+        image: '/images/dashboard.png',
+        color: 'rgba(16, 185, 129, 0.67)'
+      }
+    ]
+  }
+};
+
+// Services Schema Markup
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "WebnDigital Services",
+  "description": "Complete digital solutions including custom web development, artificial intelligence, and advertising services.",
+  "provider": {
+    "@type": "Organization",
+    "name": "WebnDigital",
+    "url": "https://webndigital.com"
+  },
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Digital Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web & Mobile App Development",
+          "description": "Custom web design, e-commerce platforms, mobile apps, and progressive web applications"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Artificial Intelligence Solutions",
+          "description": "AI assistants, recommendations, sentiment analysis, and forecasting"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Digital Marketing",
+          "description": "Google Ads, Instagram Ads, Facebook Ads, and budget management"
+        }
+      }
+    ]
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://webndigital.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://webndigital.com/services"
+      }
+    ]
+  }
+};
+---
+
+<BaseLayout
+  title="Our Services - Web Development, AI & Digital Marketing | WebnDigital"
+  description="Complete digital solutions including custom web development, AI solutions, mobile apps, progressive web apps, artificial intelligence, and digital advertising services. Transform your business with WebnDigital's expertise."
+  keywords="web development, mobile app development, AI solutions, artificial intelligence, digital marketing, Google Ads, Facebook Ads, Instagram Ads, e-commerce development, custom software, progressive web apps"
+  image="/og-services.png"
+  schema={servicesSchema}
+>
+  <!-- Hero Section -->
+  <section class="services-hero section">
+    <div class="container">
+      <h1 class="services-hero-title">
+        <span class="services-hero-main">Our Services</span>
+        <span class="services-hero-accent italic-serif">Complete Digital Solutions.</span>
+      </h1>
+      <p class="services-hero-description">
+        From custom web development and AI-powered solutions to strategic digital advertising - we provide comprehensive services that transform your business and drive measurable results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Web & Mobile App Solutions -->
+  <section id="web" class="service-section section">
+    <div class="container">
+      <div class="service-header">
+        <span class="service-label">Solutions</span>
+        <h2 class="service-title italic-serif">{services.web.title}</h2>
+        <p class="service-description">{services.web.description}</p>
+      </div>
+      <div class="service-grid">
+        {services.web.items.map((item) => (
+          <a href={`/services/${item.slug}`} class="service-card" id={item.id}>
+            <div class="service-card-image">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              <div class="service-card-overlay" style={`background-color: ${item.color}`}></div>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">{item.title}</h3>
+              <p class="service-card-description">{item.description}</p>
+              <span class="service-card-link">
+                Learn More →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Solutions -->
+  <section id="ai" class="service-section section">
+    <div class="container">
+      <div class="service-header">
+        <span class="service-label">Solutions</span>
+        <h2 class="service-title italic-serif">{services.ai.title}</h2>
+        <p class="service-description">{services.ai.description}</p>
+      </div>
+      <div class="service-grid">
+        {services.ai.items.map((item) => (
+          <a href={`/ai-services/${item.slug}`} class="service-card" id={item.id}>
+            <div class="service-card-image">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              <div class="service-card-overlay" style={`background-color: ${item.color}`}></div>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">{item.title}</h3>
+              <p class="service-card-description">{item.description}</p>
+              <span class="service-card-link">
+                Learn More →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Advertising & Marketing Solutions -->
+  <section id="advertising" class="service-section section">
+    <div class="container">
+      <div class="service-header">
+        <span class="service-label">Solutions</span>
+        <h2 class="service-title italic-serif">{services.advertising.title}</h2>
+        <p class="service-description">{services.advertising.description}</p>
+      </div>
+      <div class="service-grid">
+        {services.advertising.items.map((item) => (
+          <a href={`/advertising-services/${item.slug}`} class="service-card" id={item.id}>
+            <div class="service-card-image">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              <div class="service-card-overlay" style={`background-color: ${item.color}`}></div>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">{item.title}</h3>
+              <p class="service-card-description">{item.description}</p>
+              <span class="service-card-link">
+                Learn More →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="services-cta section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to transform your business?</h2>
+        <p class="cta-text">Let's discuss how our solutions can help you achieve your goals.</p>
+        <a href="/contact" class="btn btn-primary">
+          Start Your Project
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services-hero {
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+  
+  .services-hero-title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .services-hero-main {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 4.375rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  
+  .services-hero-accent {
+    display: block;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1.125;
+  }
+  
+  .services-hero-description {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+  }
+  
+  .service-section {
+    border-top: 1px solid var(--color-border-light);
+  }
+  
+  .service-header {
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+  
+  .service-label {
+    display: block;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .service-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .service-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+  }
+  
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .service-card {
+    display: block;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .service-card-image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+  
+  .service-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+  
+  .service-card:hover .service-card-image img {
+    transform: scale(1.05);
+  }
+  
+  .service-card-overlay {
+    position: absolute;
+    inset: 0;
+    transition: opacity var(--transition-base);
+  }
+  
+  .service-card:hover .service-card-overlay {
+    opacity: 0.85;
+  }
+  
+  .service-card-content {
+    padding: 2rem;
+  }
+  
+  .service-card-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--color-black);
+  }
+  
+  .service-card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+    margin-bottom: 1.5rem;
+  }
+  
+  .service-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    transition: all var(--transition-base);
+  }
+  
+  .service-card-link:hover {
+    color: var(--color-accent);
+    gap: 0.75rem;
+  }
+  
+  .services-cta {
+    background: var(--color-white);
+    color: var(--color-black);
+    text-align: center;
+  }
+  
+  .cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--color-text-gray);
+  }
+  
+  .cta-content .btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 2px solid var(--color-primary);
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 145, 255, 0.2);
+  }
+  
+  .cta-content .btn:hover {
+    background: transparent;
+    color: var(--color-primary);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

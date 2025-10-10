@@ -1,0 +1,480 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import BlogCard from '@components/BlogCard.astro';
+
+// Load all blog posts from JSON files
+const blogFiles = import.meta.glob('../../content/blog/*.json', { eager: true });
+
+const blogPosts = Object.values(blogFiles)
+  .map((file: any) => file.default)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const categories = ['All', ...new Set(blogPosts.map((post) => post.category))];
+
+// Blog Schema Markup
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "WebnDigital Magazine",
+  "description": "Stay updated with the latest trends in AI, web development, and business intelligence. Expert insights, case studies, and industry news.",
+  "url": "https://webndigital.com/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "WebnDigital",
+    "url": "https://webndigital.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://webndigital.com/images/logo.png"
+    }
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://webndigital.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Magazine",
+        "item": "https://webndigital.com/blog"
+      }
+    ]
+  },
+  "blogPost": blogPosts.slice(0, 6).map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "url": `https://webndigital.com${post.slug}`,
+    "datePublished": post.date,
+    "author": {
+      "@type": "Organization",
+      "name": "WebnDigital"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "WebnDigital"
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title="Magazine - Latest News, Insights & Updates | WebnDigital"
+  description="Stay updated with the latest trends in AI, web development, mobile apps, and business intelligence. Expert insights, case studies, and industry news from WebnDigital's blog."
+  keywords="AI blog, web development blog, technology insights, digital transformation news, machine learning articles, business intelligence, digital marketing tips, tech industry news"
+  image="/og-blog.png"
+  schema={blogSchema}
+>
+  <!-- Hero Section -->
+  <section class="blog-hero section">
+    <div class="container">
+      <h1 class="blog-hero-title">
+        <span class="blog-hero-main">Magazine</span>
+        <span class="blog-hero-accent italic-serif">Insights & Stories</span>
+      </h1>
+      <p class="blog-hero-description">
+        Explore our latest thoughts on technology, innovation, and digital transformation. From AI breakthroughs to web development best practices, we share what matters.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Categories -->
+  <section class="blog-filters">
+    <div class="container">
+      <div class="filter-wrapper">
+        <div class="filter-tabs">
+          {categories.map((category) => (
+            <button 
+              class:list={['filter-tab', { active: category === 'All' }]}
+              data-filter={category}
+            >
+              <span class="filter-text">{category}</span>
+              <span class="filter-count" data-count={category}>0</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-section section">
+    <div class="container">
+      <div class="blog-grid">
+        {blogPosts.map((post) => (
+          <BlogCard
+            title={post.title}
+            excerpt={post.excerpt}
+            image={post.image}
+            href={`/blog/${post.slug}`}
+            category={post.category}
+          />
+        ))}
+      </div>
+      
+      {blogPosts.length === 0 && (
+        <div class="blog-empty">
+          <p>No blog posts yet. Check back soon for updates!</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="newsletter-section section">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2 class="newsletter-title">Stay in the loop</h2>
+        <p class="newsletter-text">
+          Subscribe to our newsletter for the latest insights, case studies, and industry trends delivered to your inbox.
+        </p>
+        <form class="newsletter-form" action="/api/newsletter" method="POST">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Enter your email" 
+            required 
+            class="newsletter-input"
+          />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-hero {
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+  
+  .blog-hero-title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .blog-hero-main {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 4.375rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  
+  .blog-hero-accent {
+    display: block;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1.125;
+  }
+  
+  .blog-hero-description {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+  }
+  
+  .blog-filters {
+    padding: 2.5rem 0;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  
+  .filter-wrapper {
+    position: relative;
+  }
+  
+  .filter-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .filter-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: transparent;
+    border: none;
+    color: var(--color-text-gray);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  
+  .filter-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 2px;
+    background: var(--color-primary);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .filter-text {
+    position: relative;
+  }
+  
+  .filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    padding: 0 0.25rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+    transition: all 0.25s ease;
+  }
+  
+  .filter-tab:hover {
+    color: var(--color-black);
+  }
+  
+  .filter-tab:hover .filter-count {
+    opacity: 1;
+    color: var(--color-primary);
+  }
+  
+  .filter-tab.active {
+    color: var(--color-black);
+  }
+  
+  .filter-tab.active::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+  
+  .filter-tab.active .filter-count {
+    color: var(--color-primary);
+    opacity: 1;
+  }
+  
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .blog-empty {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--color-text-gray);
+  }
+  
+  .newsletter-section {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+  
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .newsletter-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  
+  .newsletter-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--color-text-gray);
+  }
+  
+  .newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .newsletter-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--color-border-light);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+  
+  .newsletter-form .btn {
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 1024px) {
+    .filter-tabs {
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      flex-wrap: nowrap;
+      gap: 0;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 145, 255, 0.2) transparent;
+    }
+    
+    .filter-tabs::-webkit-scrollbar {
+      height: 2px;
+    }
+    
+    .filter-tabs::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .filter-tabs::-webkit-scrollbar-thumb {
+      background: rgba(0, 145, 255, 0.2);
+      border-radius: 10px;
+    }
+    
+    .filter-tab {
+      flex-shrink: 0;
+      padding: 0.75rem 1rem;
+      min-height: 48px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .blog-filters {
+      padding: 2rem 0;
+    }
+    
+    .blog-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .newsletter-form {
+      flex-direction: column;
+    }
+    
+    .filter-tab {
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.3px;
+      gap: 0.5rem;
+    }
+    
+    .filter-tab::after {
+      height: 2px;
+    }
+    
+    .filter-count {
+      font-size: 0.625rem;
+      min-width: 1.125rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .blog-filters {
+      padding: 1.5rem 0;
+    }
+    
+    .filter-tabs {
+      gap: 0;
+    }
+    
+    .filter-tab {
+      padding: 0.625rem 0.875rem;
+      font-size: 0.6875rem;
+      min-height: 44px;
+      gap: 0.375rem;
+    }
+    
+    .filter-count {
+      font-size: 0.625rem;
+      min-width: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Blog filtering
+  const filterTabs = document.querySelectorAll<HTMLButtonElement>('.filter-tab');
+  const blogCards = document.querySelectorAll<HTMLElement>('.blog-card');
+  
+  // Calculate and display counts
+  function updateCounts() {
+    const counts: { [key: string]: number } = { 'All': blogCards.length };
+    
+    blogCards.forEach((card) => {
+      const category = card.getAttribute('data-category');
+      if (category) {
+        counts[category] = (counts[category] || 0) + 1;
+      }
+    });
+    
+    // Update count badges
+    document.querySelectorAll('.filter-count').forEach((badge) => {
+      const countType = badge.getAttribute('data-count');
+      if (countType && counts[countType] !== undefined) {
+        badge.textContent = counts[countType].toString();
+      }
+    });
+  }
+  
+  // Initialize counts
+  updateCounts();
+  
+  filterTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const filter = tab.dataset.filter;
+      
+      // Update active tab
+      filterTabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      // Filter cards
+      blogCards.forEach((card) => {
+        const category = card.getAttribute('data-category');
+        
+        if (filter === 'All' || category === filter) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+      
+      // Smooth scroll on mobile
+      if (window.innerWidth <= 768) {
+        setTimeout(() => {
+          const filterSection = document.querySelector('.blog-filters');
+          if (filterSection) {
+            const headerHeight = 70;
+            const sectionTop = filterSection.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+              top: sectionTop - headerHeight - 20,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
+      }
+    });
+  });
+</script>

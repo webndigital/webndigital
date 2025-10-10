@@ -1,0 +1,196 @@
+---
+// Cookie Consent Widget
+---
+
+<div class="cookie-consent" id="cookie-consent">
+  <div class="cookie-dialog">
+    <h2 class="cookie-title">We use cookies!</h2>
+    <div class="cookie-text">
+      <p>
+        Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. These will be set only after consent.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-btn-accept" id="accept-cookies">
+        Accept all
+      </button>
+      <button class="cookie-btn cookie-btn-reject" id="reject-cookies">
+        Reject all
+      </button>
+      <button class="cookie-btn cookie-btn-manage" id="manage-cookies">
+        Manage Individual preferences
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10000;
+    max-width: 384px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition-base);
+  }
+  
+  .cookie-consent.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .cookie-dialog {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 1.5rem;
+  }
+  
+  .cookie-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-bottom: 1rem;
+  }
+  
+  .cookie-text {
+    margin-bottom: 1.5rem;
+  }
+  
+  .cookie-text p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #5E6266;
+  }
+  
+  .cookie-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #F0F4F7;
+  }
+  
+  .cookie-btn {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    border: 1px solid transparent;
+  }
+  
+  .cookie-btn-accept {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+  
+  .cookie-btn-accept:hover {
+    background: #007AD9;
+    border-color: #007AD9;
+  }
+  
+  .cookie-btn-reject {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+  
+  .cookie-btn-reject:hover {
+    background: #007AD9;
+    border-color: #007AD9;
+  }
+  
+  .cookie-btn-manage {
+    background: #EAEFF2;
+    color: var(--color-text-dark);
+    border-color: #EAEFF2;
+  }
+  
+  .cookie-btn-manage:hover {
+    background: #D8DDE0;
+    border-color: #D8DDE0;
+  }
+  
+  @media (max-width: 768px) {
+    .cookie-consent {
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      max-width: none;
+    }
+  }
+</style>
+
+<script>
+  // Cookie consent functionality
+  const COOKIE_NAME = 'webndigital-cookie-consent';
+  const COOKIE_EXPIRY_DAYS = 365;
+  
+  function setCookie(name: string, value: string, days: number) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+  }
+  
+  function getCookie(name: string): string | null {
+    const nameEQ = name + '=';
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+  
+  function showCookieConsent() {
+    const consent = document.getElementById('cookie-consent');
+    if (consent && !getCookie(COOKIE_NAME)) {
+      setTimeout(() => {
+        consent.classList.add('show');
+      }, 1000);
+    }
+  }
+  
+  function hideCookieConsent() {
+    const consent = document.getElementById('cookie-consent');
+    consent?.classList.remove('show');
+  }
+  
+  // Accept all cookies
+  document.getElementById('accept-cookies')?.addEventListener('click', () => {
+    setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
+    hideCookieConsent();
+    console.log('Cookies accepted');
+  });
+  
+  // Reject all cookies
+  document.getElementById('reject-cookies')?.addEventListener('click', () => {
+    setCookie(COOKIE_NAME, 'rejected', COOKIE_EXPIRY_DAYS);
+    hideCookieConsent();
+    console.log('Cookies rejected');
+  });
+  
+  // Manage cookies (for now, same as reject)
+  document.getElementById('manage-cookies')?.addEventListener('click', () => {
+    setCookie(COOKIE_NAME, 'managed', COOKIE_EXPIRY_DAYS);
+    hideCookieConsent();
+    console.log('Cookie preferences managed');
+  });
+  
+  // Show consent on page load
+  showCookieConsent();
+  
+  // Show consent on Astro page transitions
+  document.addEventListener('astro:page-load', showCookieConsent);
+</script>

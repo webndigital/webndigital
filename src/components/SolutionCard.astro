@@ -1,0 +1,116 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  subtitle: string;
+  image: string;
+  href: string;
+  overlayColor?: 'blue' | 'purple' | 'dark';
+}
+
+const { title, category, subtitle, image, href, overlayColor = 'blue' } = Astro.props;
+
+const overlayColors = {
+  blue: 'rgba(0, 145, 255, 0.67)',
+  purple: 'rgba(112, 5, 72, 0.67)',
+  dark: 'rgba(3, 0, 39, 0.67)'
+};
+---
+
+<a href={href} class="solution-card">
+  <div class="solution-image">
+    <img src={image} alt={subtitle} loading="lazy" />
+    <div class="solution-overlay" style={`background-color: ${overlayColors[overlayColor]}`}></div>
+  </div>
+  <div class="solution-content">
+    <h3 class="solution-category">{category}</h3>
+    <p class="solution-subtitle">{subtitle}</p>
+  </div>
+</a>
+
+<style>
+  .solution-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 300px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--transition-base);
+  }
+  
+  .solution-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .solution-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .solution-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+  
+  .solution-card:hover .solution-image img {
+    transform: scale(1.05);
+  }
+  
+  .solution-overlay {
+    position: absolute;
+    inset: 0;
+    transition: opacity var(--transition-base);
+  }
+  
+  .solution-card:hover .solution-overlay {
+    opacity: 0.85;
+  }
+  
+  .solution-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 2.5rem;
+    color: var(--color-white);
+  }
+  
+  .solution-category {
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+  }
+  
+  .solution-subtitle {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.2;
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .solution-card {
+      height: 250px;
+    }
+    
+    .solution-content {
+      padding: 1.5rem;
+    }
+    
+    .solution-subtitle {
+      font-size: 1.5rem;
+    }
+  }
+</style>

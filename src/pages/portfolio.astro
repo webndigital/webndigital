@@ -1,0 +1,718 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const portfolioItems = [
+  {
+    id: 1,
+    title: 'The Solo Restaurant - Modern Web Design & SEO',
+    category: 'Web Development',
+    description: 'Complete website redesign and development for The Solo Restaurant with strategic SEO implementation, delivering exceptional performance and significantly increased organic visibility.',
+    image: '/images/projects/the-solo-web.png',
+    tags: ['Astro', 'SEO', 'Performance', 'Analytics'],
+    results: ['"The website is stunning and incredibly fast" - Client feedback', '3x increase in organic search inquiries', '95+ Google PageSpeed score']
+  },
+  {
+    id: 2,
+    title: 'Voltz Power Tools - E-Commerce Platform & Product Catalog',
+    category: 'Web Development',
+    description: 'Professional e-commerce platform for Voltz Power Tools featuring comprehensive product catalog, V-PACK battery system showcase, and optimized user experience for industrial professionals.',
+    image: '/images/ecommerce-custom.png',
+    tags: ['React', 'E-commerce', 'Product Catalog', 'Responsive'],
+    results: ['Enhanced product discovery', 'Mobile-optimized experience', 'Professional brand positioning']
+  },
+  {
+    id: 3,
+    title: 'Türkel Fuarcılık - Corporate Website & Fair Management System',
+    category: 'Web Development',
+    description: 'Multilingual corporate website for Türkel Fuarcılık, managing 50+ international trade fairs with advanced booking system, comprehensive fair calendar, and visitor/participant registration forms.',
+    image: '/images/logistica.png',
+    tags: ['Multilingual', 'Forms', 'Calendar', 'Corporate'],
+    results: ['Streamlined booking process', 'Multi-language support (TR/EN)', 'Efficient participant management']
+  },
+  {
+    id: 4,
+    title: 'JSC STF - Corporate Website & Professional Services',
+    category: 'Web Development',
+    description: 'Modern corporate website delivering professional services with intuitive navigation, comprehensive service portfolio, and optimized contact systems for client acquisition.',
+    image: '/images/magazzino.png',
+    tags: ['Corporate', 'SEO', 'Lead Generation', 'Professional'],
+    results: ['Improved client engagement', 'Professional online presence', 'Enhanced service visibility']
+  },
+  {
+    id: 5,
+    title: 'Türkel Global Stands - Portfolio Website & Exhibition Showcase',
+    category: 'Web Development',
+    description: 'Showcase website for Türkel Global Stands featuring portfolio of international exhibition stand designs, 3D visualizations, and project management capabilities for global trade shows.',
+    image: '/images/raccomandazione.png',
+    tags: ['Portfolio', 'Visual Design', 'Multilingual', '3D Showcase'],
+    results: ['Visual portfolio excellence', 'International client reach', 'Enhanced project presentations']
+  },
+  {
+    id: 6,
+    title: 'Hypnotic Human - E-Commerce Platform for Leather & Outerwear',
+    category: 'Web Development',
+    description: 'Premium e-commerce platform for Hypnotic Human specializing in leather products and outerwear, featuring bilingual interface, product catalog, and seamless shopping experience for fashion enthusiasts.',
+    image: '/images/sentiment.png',
+    tags: ['E-commerce', 'Fashion', 'Bilingual', 'Leather Goods'],
+    results: ['Premium brand positioning', 'Bilingual accessibility (TR/EN)', 'Enhanced online sales']
+  },
+  {
+    id: 7,
+    title: 'Dijital Çözüm 360 - Digital Agency Website & Service Showcase',
+    category: 'Web Development',
+    description: 'Full-service digital agency platform offering web development, SEO, social media, and digital marketing services with integrated contact systems and service showcase.',
+    image: '/images/dashboard.png',
+    tags: ['Digital Agency', 'SEO', 'Services', 'Marketing'],
+    results: ['Comprehensive service display', 'Lead generation optimization', 'Digital presence authority']
+  },
+  {
+    id: 8,
+    title: 'Pizza Fabrique - Restaurant Website & Online Ordering System',
+    category: 'Web Development',
+    description: 'Appetizing restaurant website with online menu, mobile app integration, special offers system, and fast delivery coordination for pizza and burger ordering.',
+    image: '/images/pagamento.png',
+    tags: ['Restaurant', 'Online Ordering', 'Mobile App', 'Menu'],
+    results: ['Mobile app downloads increased', 'Streamlined online ordering', 'Enhanced customer loyalty']
+  },
+  {
+    id: 9,
+    title: 'AtZero - Technology Studio Website & Portfolio',
+    category: 'Web Development',
+    description: 'Sophisticated technology studio website showcasing UX/UI design, mobile applications, and digital strategy services with portfolio of innovative projects including GiveanOrder and Monilabb.',
+    image: '/images/code-is-yours.png',
+    tags: ['Tech Studio', 'UX/UI', 'Portfolio', 'Strategy'],
+    results: ['Premium positioning', 'Project showcase excellence', 'International client attraction']
+  },
+  {
+    id: 10,
+    title: 'Financial Analysis - AI-Powered Personal Finance App',
+    category: ['Mobile App', 'Artificial Intelligence'],
+    description: 'Cross-platform mobile application for personal expense tracking and AI-driven financial analysis, built with Expo and React Native for seamless iOS and Android experience with intelligent spending insights.',
+    image: '/images/finance.png',
+    tags: ['Expo', 'React Native', 'AI', 'iOS & Android'],
+    results: ['AI-powered expense insights', 'Cross-platform compatibility', 'Real-time financial tracking']
+  },
+  {
+    id: 11,
+    title: 'Astroloji.ai - AI Astrology Personal Guide',
+    category: ['Mobile App', 'Artificial Intelligence'],
+    description: 'Innovative AI-powered astrology mobile application offering personalized astrological insights and guidance, developed with Expo and React Native for both iOS and Android platforms with intelligent predictions.',
+    image: '/images/ai-algorithms.png',
+    tags: ['Expo', 'React Native', 'AI', 'Astrology'],
+    results: ['Personalized AI predictions', 'Engaging user experience', 'Daily astrological insights']
+  }
+];
+
+// Portfolio Schema Markup
+const portfolioSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "WebnDigital Portfolio - Success Stories & Case Studies",
+  "description": "Explore our portfolio of successful projects across web development, mobile applications, and artificial intelligence.",
+  "url": "https://webndigital.com/portfolio",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://webndigital.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Portfolio",
+        "item": "https://webndigital.com/portfolio"
+      }
+    ]
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": portfolioItems.length,
+    "itemListElement": portfolioItems.slice(0, 5).map((item, index) => ({
+      "@type": "CreativeWork",
+      "position": index + 1,
+      "name": item.title,
+      "description": item.description,
+      "category": item.category
+    }))
+  }
+};
+---
+
+<BaseLayout
+  title="Our Portfolio - Success Stories & Case Studies | WebnDigital"
+  description="Explore our portfolio of successful projects across web development, mobile applications, and artificial intelligence. See how we've helped businesses transform digitally with innovative solutions."
+  keywords="portfolio, case studies, web development projects, mobile app projects, AI solutions, success stories, client projects, digital transformation examples"
+  image="/og-portfolio.png"
+  schema={portfolioSchema}
+>
+  <!-- Hero Section -->
+  <section class="portfolio-hero section">
+    <div class="container">
+      <h1 class="portfolio-hero-title">
+        <span class="portfolio-hero-main">Case History</span>
+        <span class="portfolio-hero-accent italic-serif">Our success stories.</span>
+      </h1>
+      <p class="portfolio-hero-description">
+        We're proud of the innovative solutions we've delivered for our clients. Each project represents a unique challenge and a successful partnership.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Tabs -->
+  <section class="portfolio-filters">
+    <div class="container">
+      <div class="filter-wrapper">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">
+            <span class="filter-text">All Projects</span>
+            <span class="filter-count" data-count="all">0</span>
+          </button>
+          <button class="filter-tab" data-filter="Web Development">
+            <span class="filter-text">Web Development</span>
+            <span class="filter-count" data-count="Web Development">0</span>
+          </button>
+          <button class="filter-tab" data-filter="Mobile App">
+            <span class="filter-text">Mobile Apps</span>
+            <span class="filter-count" data-count="Mobile App">0</span>
+          </button>
+          <button class="filter-tab" data-filter="Artificial Intelligence">
+            <span class="filter-text">AI Solutions</span>
+            <span class="filter-count" data-count="Artificial Intelligence">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="portfolio-section section">
+    <div class="container">
+      <div class="portfolio-grid">
+        {portfolioItems.map((item) => (
+          <article class="portfolio-card" data-category={JSON.stringify(item.category)}>
+            <div class="portfolio-image">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              <div class="portfolio-overlay">
+                <span class="portfolio-category">
+                  {Array.isArray(item.category) ? item.category.join(' • ') : item.category}
+                </span>
+              </div>
+            </div>
+            <div class="portfolio-content">
+              <h3 class="portfolio-title">{item.title}</h3>
+              <p class="portfolio-description">{item.description}</p>
+              <div class="portfolio-tags">
+                {item.tags.map((tag) => (
+                  <span class="portfolio-tag">{tag}</span>
+                ))}
+              </div>
+              <div class="portfolio-results">
+                <h4 class="results-heading">Key Results:</h4>
+                <ul class="results-list">
+                  {item.results.map((result) => (
+                    <li>{result}</li>
+                  ))}
+                </ul>
+              </div>
+              <a href={`/contact?project=${Array.isArray(item.category) ? item.category[0].toLowerCase().replace(' ', '-') : item.category.toLowerCase().replace(' ', '-')}`} class="portfolio-link">
+                Start Similar Project →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="portfolio-cta section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to write your success story?</h2>
+        <p class="cta-text">Let's work together to create innovative solutions that drive real results.</p>
+        <a href="/contact" class="btn btn-primary">
+          Get in Touch
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .portfolio-hero {
+    text-align: center;
+    padding: 5rem 0 3rem;
+  }
+  
+  .portfolio-hero-title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .portfolio-hero-main {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 4.375rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  
+  .portfolio-hero-accent {
+    display: block;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1.125;
+  }
+  
+  .portfolio-hero-description {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+  }
+  
+  .portfolio-filters {
+    padding: 2.5rem 0;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border-light);
+  }
+  
+  .filter-wrapper {
+    position: relative;
+  }
+  
+  .filter-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .filter-tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: transparent;
+    border: none;
+    color: var(--color-text-gray);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  
+  .filter-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 2px;
+    background: var(--color-primary);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .filter-text {
+    position: relative;
+  }
+  
+  .filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.25rem;
+    padding: 0 0.25rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+    transition: all 0.25s ease;
+  }
+  
+  .filter-tab:hover {
+    color: var(--color-black);
+  }
+  
+  .filter-tab:hover .filter-count {
+    opacity: 1;
+    color: var(--color-primary);
+  }
+  
+  .filter-tab.active {
+    color: var(--color-black);
+  }
+  
+  .filter-tab.active::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+  
+  .filter-tab.active .filter-count {
+    color: var(--color-primary);
+    opacity: 1;
+  }
+  
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 3rem;
+  }
+  
+  .portfolio-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+  }
+  
+  .portfolio-card.hidden {
+    display: none;
+  }
+  
+  .portfolio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .portfolio-image {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+  }
+  
+  .portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+  
+  .portfolio-card:hover .portfolio-image img {
+    transform: scale(1.05);
+  }
+  
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+  }
+  
+  .portfolio-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+  }
+  
+  .portfolio-content {
+    padding: 2rem;
+  }
+  
+  .portfolio-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--color-black);
+  }
+  
+  .portfolio-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+    margin-bottom: 1.5rem;
+  }
+  
+  .portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .portfolio-tag {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    background: var(--color-bg-light);
+    color: var(--color-text-gray);
+    border-radius: var(--radius-sm);
+  }
+  
+  .portfolio-results {
+    padding: 1.5rem;
+    background: var(--color-bg-light);
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+  }
+  
+  .results-heading {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    color: var(--color-black);
+  }
+  
+  .results-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .results-list li {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-gray);
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  
+  .results-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  
+  .portfolio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    transition: all var(--transition-base);
+  }
+  
+  .portfolio-link:hover {
+    color: var(--color-accent);
+    gap: 0.75rem;
+  }
+  
+  .portfolio-cta {
+    background: var(--color-white);
+    color: var(--color-black);
+    text-align: center;
+  }
+  
+  .cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--color-text-gray);
+  }
+  
+  .cta-content .btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 2px solid var(--color-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 145, 255, 0.2);
+  }
+  
+  .cta-content .btn:hover {
+    background: transparent;
+    color: var(--color-primary);
+    box-shadow: 0 6px 20px rgba(0, 145, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 1024px) {
+    .filter-tabs {
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      flex-wrap: nowrap;
+      gap: 0;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 145, 255, 0.2) transparent;
+    }
+    
+    .filter-tabs::-webkit-scrollbar {
+      height: 2px;
+    }
+    
+    .filter-tabs::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .filter-tabs::-webkit-scrollbar-thumb {
+      background: rgba(0, 145, 255, 0.2);
+      border-radius: 10px;
+    }
+    
+    .filter-tab {
+      flex-shrink: 0;
+      padding: 0.75rem 1rem;
+      min-height: 48px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .portfolio-filters {
+      padding: 2rem 0;
+    }
+    
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .filter-tab {
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.3px;
+      gap: 0.5rem;
+    }
+    
+    .filter-tab::after {
+      height: 2px;
+    }
+    
+    .filter-count {
+      font-size: 0.625rem;
+      min-width: 1.125rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .portfolio-filters {
+      padding: 1.5rem 0;
+    }
+    
+    .filter-tabs {
+      gap: 0;
+    }
+    
+    .filter-tab {
+      padding: 0.625rem 0.875rem;
+      font-size: 0.6875rem;
+      min-height: 44px;
+      gap: 0.375rem;
+    }
+    
+    .filter-count {
+      font-size: 0.625rem;
+      min-width: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Portfolio filtering
+  const filterTabs = document.querySelectorAll('.filter-tab') as NodeListOf<HTMLButtonElement>;
+  const portfolioCards = document.querySelectorAll('.portfolio-card') as NodeListOf<HTMLElement>;
+  
+  // Calculate and display counts
+  function updateCounts() {
+    const counts: { [key: string]: number } = { 'all': portfolioCards.length };
+    
+    portfolioCards.forEach((card) => {
+      const categoryData = card.dataset.category;
+      if (!categoryData) return;
+      
+      try {
+        const category = JSON.parse(categoryData);
+        const categories = Array.isArray(category) ? category : [category];
+        
+        categories.forEach((cat: string) => {
+          counts[cat] = (counts[cat] || 0) + 1;
+        });
+      } catch (e) {
+        console.error('Error parsing category:', e);
+      }
+    });
+    
+    // Update count badges
+    document.querySelectorAll('.filter-count').forEach((badge) => {
+      const countType = badge.getAttribute('data-count');
+      if (countType && counts[countType] !== undefined) {
+        badge.textContent = counts[countType].toString();
+      }
+    });
+  }
+  
+  // Initialize counts
+  updateCounts();
+  
+  filterTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const filter = tab.dataset.filter;
+      
+      // Update active tab
+      filterTabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      // Filter cards
+      portfolioCards.forEach((card) => {
+        const categoryData = card.dataset.category;
+        if (!categoryData) return;
+        
+        try {
+          const category = JSON.parse(categoryData);
+          const categories = Array.isArray(category) ? category : [category];
+          
+          if (filter === 'all' || categories.includes(filter)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        } catch (e) {
+          console.error('Error parsing category:', e);
+        }
+      });
+      
+      // Smooth scroll on mobile
+      if (window.innerWidth <= 768) {
+        setTimeout(() => {
+          const filterSection = document.querySelector('.portfolio-filters');
+          if (filterSection) {
+            const headerHeight = 70;
+            const sectionTop = filterSection.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+              top: sectionTop - headerHeight - 20,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
+      }
+    });
+  });
+</script>

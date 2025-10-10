@@ -1,0 +1,21 @@
+{
+  "name": "webndigital",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^8.3.4",
+    "astro": "^4.16.0",
+    "nodemailer": "^6.9.15",
+    "openai": "^6.2.0"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.16"
+  }
+}

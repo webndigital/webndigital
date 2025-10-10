@@ -1,0 +1,839 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  company: [
+    { label: 'The Company', href: '/about' },
+    { label: 'Team', href: '/about#team' },
+    { label: 'Services', href: '/services' },
+    { label: 'Products', href: '/portfolio' },
+    { label: 'Magazine', href: '/blog' },
+    { label: 'Privacy Policy', href: '/privacy' }
+  ],
+  services: [
+    { label: 'Artificial Intelligence', href: '/services#ai' },
+    { label: 'Web Development', href: '/services#web' },
+    { label: 'Business Intelligence', href: '/services#bi' },
+    { label: 'Strategic Consulting', href: '/services#consulting' },
+    { label: 'Training', href: '/services#training' }
+  ]
+};
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-main">
+        <!-- Brand & Description -->
+        <div class="footer-brand-section">
+          <a href="/" class="footer-logo">
+            <svg width="200" height="40" viewBox="0 0 200 40" fill="none">
+              <text x="0" y="30" font-family="IBM Plex Sans" font-size="26" font-weight="600" fill="white">WebnDigital</text>
+            </svg>
+          </a>
+          <p class="footer-tagline italic-serif">Artificial Intelligence, Make It Yours</p>
+          <p class="footer-description">
+            We transform businesses through cutting-edge AI solutions, web development, and digital marketing strategies that deliver measurable results.
+          </p>
+          
+          <!-- Social Links -->
+          <div class="footer-social">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Services -->
+        <div class="footer-col footer-accordion-col">
+          <button class="footer-heading footer-accordion-toggle" data-accordion="services" aria-expanded="false">
+            <span>Services</span>
+            <svg class="accordion-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="footer-accordion-content" data-content="services">
+            <ul class="footer-links">
+              {footerLinks.services.map((link) => (
+                <li><a href={link.href}>{link.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Company -->
+        <div class="footer-col footer-accordion-col">
+          <button class="footer-heading footer-accordion-toggle" data-accordion="company" aria-expanded="false">
+            <span>Company</span>
+            <svg class="accordion-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="footer-accordion-content" data-content="company">
+            <ul class="footer-links">
+              {footerLinks.company.map((link) => (
+                <li><a href={link.href}>{link.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Contact -->
+        <div class="footer-col footer-accordion-col">
+          <button class="footer-heading footer-accordion-toggle" data-accordion="contact" aria-expanded="false">
+            <span>Get In Touch</span>
+            <svg class="accordion-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="footer-accordion-content" data-content="contact">
+            <div class="footer-contact">
+              <a href="mailto:hello@webndigital.com" class="contact-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                hello@webndigital.com
+              </a>
+              <a href="tel:+447902844675" class="contact-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                +44 7902 844675
+              </a>
+              <div class="contact-address">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <address>
+                  London, UK<br>
+                  SW1A 1AA
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} WebnDigital Ltd. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="/privacy">Privacy Policy</a>
+        <span>•</span>
+        <a href="/terms">Terms of Service</a>
+        <span>•</span>
+        <a href="/cookies">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Back to Top Button (Mobile) -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 15V5M10 5L5 10M10 5L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</footer>
+
+<style>
+  .footer {
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    padding: 4rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  }
+  
+  .footer-top {
+    margin-bottom: 3rem;
+  }
+  
+  .footer-main {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  
+  /* Brand Section */
+  .footer-brand-section {
+    max-width: 400px;
+  }
+  
+  .footer-logo {
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: transform var(--transition-base);
+  }
+  
+  .footer-logo:hover {
+    transform: translateY(-2px);
+  }
+  
+  .footer-tagline {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+    font-weight: 400;
+  }
+  
+  .footer-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Social Icons */
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .social-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+  }
+  
+  /* Columns */
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-heading {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 1.25rem;
+    opacity: 0.95;
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.625rem;
+  }
+  
+  .footer-links a {
+    font-size: 0.9rem;
+    color: var(--color-white);
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+  
+  .footer-links a:hover {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+  
+  /* Contact */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.9rem;
+    color: var(--color-white);
+    opacity: 0.85;
+    transition: all 0.2s ease;
+  }
+  
+  .contact-link:hover {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+  
+  .contact-link svg {
+    flex-shrink: 0;
+  }
+  
+  .contact-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+  
+  .contact-address address {
+    font-style: normal;
+    line-height: 1.5;
+  }
+  
+  .contact-address svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.875rem;
+    opacity: 0.75;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .footer-legal a {
+    color: var(--color-white);
+    opacity: 0.8;
+    transition: opacity var(--transition-base);
+  }
+  
+  .footer-legal a:hover {
+    opacity: 1;
+  }
+  
+  .footer-legal span {
+    opacity: 0.5;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .footer {
+      padding: 3.5rem 0 2rem;
+    }
+    
+    .footer-main {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+    
+    .footer-brand-section {
+      grid-column: span 2;
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      padding: 3rem 0 2rem;
+    }
+    
+    .footer-top {
+      margin-bottom: 2.5rem;
+    }
+    
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    
+    .footer-brand-section {
+      grid-column: 1;
+      max-width: 100%;
+      padding-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-logo {
+      margin-bottom: 1.25rem;
+    }
+    
+    .footer-tagline {
+      font-size: 1.125rem;
+      margin-bottom: 0.875rem;
+    }
+    
+    .footer-description {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-social {
+      gap: 0.75rem;
+      justify-content: flex-start;
+    }
+    
+    .social-icon {
+      width: 44px;
+      height: 44px;
+    }
+    
+    .social-icon:active {
+      transform: scale(0.95);
+    }
+    
+    .footer-accordion-col {
+      margin-bottom: 0;
+    }
+    
+    .footer-heading {
+      font-size: 0.875rem;
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0;
+    }
+    
+    .footer-links a {
+      font-size: 0.9375rem;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.2s ease;
+    }
+    
+    .footer-links a:active {
+      transform: translateX(4px);
+      opacity: 0.7;
+    }
+    
+    .footer-links li:last-child a {
+      border-bottom: none;
+    }
+    
+    .contact-link {
+      font-size: 0.9375rem;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .contact-link:active {
+      transform: translateX(4px);
+      opacity: 0.7;
+    }
+    
+    .contact-address {
+      padding: 0.625rem 0;
+    }
+    
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.25rem;
+      padding-top: 2rem;
+    }
+    
+    .footer-legal {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer {
+      padding: 2.5rem 0 1.5rem;
+    }
+    
+    .footer-top {
+      margin-bottom: 2rem;
+    }
+    
+    .footer-main {
+      gap: 0;
+    }
+    
+    .footer-brand-section {
+      padding-bottom: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .footer-logo {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-logo svg {
+      width: 150px;
+      height: 30px;
+    }
+    
+    .footer-tagline {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .footer-description {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    
+    .footer-social {
+      gap: 0.625rem;
+    }
+    
+    .social-icon {
+      width: 42px;
+      height: 42px;
+    }
+    
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .footer-accordion-toggle {
+      padding: 0.875rem 0;
+    }
+    
+    .footer-heading {
+      font-size: 0.8125rem;
+    }
+    
+    .accordion-icon {
+      width: 14px;
+      height: 14px;
+    }
+    
+    .footer-links {
+      padding: 0.875rem 0;
+    }
+    
+    .footer-links a {
+      font-size: 0.875rem;
+      min-height: 44px;
+      padding: 0.5rem 0;
+    }
+    
+    .footer-contact {
+      padding: 0.875rem 0;
+    }
+    
+    .contact-link {
+      font-size: 0.875rem;
+      min-height: 44px;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+    }
+    
+    .contact-link svg,
+    .contact-address svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    
+    .contact-address {
+      padding: 0.5rem 0;
+      font-size: 0.875rem;
+    }
+    
+    .footer-bottom {
+      font-size: 0.8125rem;
+      padding-top: 1.75rem;
+      gap: 1rem;
+    }
+    
+    .footer-legal {
+      font-size: 0.75rem;
+      gap: 0.5rem;
+      line-height: 1.6;
+    }
+    
+    .footer-legal a {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+  
+  /* Mobile Accordion Styles */
+  .footer-accordion-toggle {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .accordion-icon {
+    display: none;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .footer-accordion-content {
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  @media (max-width: 1024px) {
+    .footer-accordion-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .accordion-icon {
+      display: block;
+      flex-shrink: 0;
+    }
+    
+    .footer-accordion-toggle.active .accordion-icon {
+      transform: rotate(180deg);
+    }
+    
+    .footer-accordion-content {
+      max-height: 0;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .footer-accordion-col {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .footer-accordion-col:last-of-type {
+      border-bottom: none;
+    }
+    
+    .footer-links {
+      padding: 1rem 0;
+    }
+    
+    .footer-contact {
+      padding: 1rem 0;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    .footer-accordion-content {
+      max-height: none !important;
+    }
+  }
+  
+  /* Back to Top Button */
+  .back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 145, 255, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9999;
+  }
+  
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  
+  .back-to-top:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 24px rgba(0, 145, 255, 0.4);
+  }
+  
+  .back-to-top:active {
+    transform: translateY(-1px) scale(0.98);
+  }
+  
+  .back-to-top svg {
+    animation: bounceUp 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounceUp {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .back-to-top {
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 48px;
+      height: 48px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .back-to-top {
+      bottom: 1rem;
+      right: 1rem;
+      width: 44px;
+      height: 44px;
+    }
+    
+    .back-to-top svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+</style>
+
+<script>
+  // Mobile Footer Accordion
+  const initFooterAccordion = () => {
+    const accordionToggles = document.querySelectorAll('.footer-accordion-toggle') as NodeListOf<HTMLButtonElement>;
+    
+    // Only activate accordion on mobile/tablet
+    const isMobile = () => window.innerWidth <= 1024;
+    
+    accordionToggles.forEach((toggle) => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Only work on mobile
+        if (!isMobile()) return;
+        
+        const targetId = toggle.getAttribute('data-accordion');
+        const content = document.querySelector(`[data-content="${targetId}"]`) as HTMLElement;
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other accordions
+        accordionToggles.forEach((otherToggle) => {
+          if (otherToggle !== toggle) {
+            otherToggle.setAttribute('aria-expanded', 'false');
+            otherToggle.classList.remove('active');
+            const otherId = otherToggle.getAttribute('data-accordion');
+            const otherContent = document.querySelector(`[data-content="${otherId}"]`) as HTMLElement;
+            if (otherContent) {
+              otherContent.style.maxHeight = '0';
+            }
+          }
+        });
+        
+        // Toggle current accordion
+        if (isExpanded) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.classList.remove('active');
+          content.style.maxHeight = '0';
+        } else {
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.classList.add('active');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+    
+    // Handle window resize
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (!isMobile()) {
+          // Reset accordions on desktop
+          accordionToggles.forEach((toggle) => {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.classList.remove('active');
+            const targetId = toggle.getAttribute('data-accordion');
+            const content = document.querySelector(`[data-content="${targetId}"]`) as HTMLElement;
+            if (content) {
+              content.style.maxHeight = '';
+            }
+          });
+        }
+      }, 250);
+    });
+  };
+  
+  // Initialize accordion
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFooterAccordion);
+  } else {
+    initFooterAccordion();
+  }
+  
+  // Back to Top Button
+  const backToTopBtn = document.getElementById('backToTop') as HTMLButtonElement;
+  
+  if (backToTopBtn) {
+    // Show/hide button based on scroll
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+    
+    // Smooth scroll to top
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+</script>

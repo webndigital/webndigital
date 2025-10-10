@@ -1,0 +1,87 @@
+---
+description: "Cursor rules for English-only, multi-page Astro site with blog via local JSON, contact form, custom cursor effects."
+globs: 
+  - "src/**/*.astro"
+  - "src/components/**/*.ts"
+  - "src/utils/**/*.ts"
+  - "src/content/**/*.json"
+---
+
+# General Project Context
+
+You are working on a digital agency site built with Astro. The site is **English only**, **multi-page** (Home, Services, Portfolio, Blog, Contact). Blog content is stored locally via JSON / files, not via external API. There is a contact form that sends emails via a Gmail (SMTP) backend. The site includes a custom cursor / cursor-effects module (in `CursorRules/` folder) and an interactive FAQ drop-down (“How can we help you?”) panel.
+
+Cursor should respect these architectural decisions and best practices when generating or completing code.
+
+---
+
+# Rules
+
+## 1. Astro / Component Rules
+
+- Favor **static generation (SSG)** over client-side rendering unless interactivity is required.  
+- Use `client:load`, `client:idle`, `client:visible` only when necessary (e.g. for the FAQ widget’s expand/collapse, or cursor effect).  
+- Keep JavaScript minimal — don’t bundle large libraries just for small effects.  
+- Use **Astro’s file-based routing** (pages/) and **isolated components**.  
+- Use `Astro.glob()` or `import.meta.glob()` to load blog JSON / content files at build time.  
+- Components should accept props and be reusable (e.g. `FAQWidget.astro`, `ServiceCard.astro`).  
+
+## 2. SEO & Metadata
+
+- Every page must have a `<title>` and `<meta name="description">`.  
+- Use Open Graph and Twitter Card meta tags.  
+- Use canonical URLs if needed.  
+- Generate a sitemap (e.g. `sitemap.xml`) from the site pages.  
+- Use semantic HTML (header, main, section, nav, footer).  
+- Use `hreflang` only if you ever add multilingual (currently single language, so not needed).  
+
+## 3. Blog / Content Rules
+
+- Blog posts stored as JSON or markdown + frontmatter. Use a content collection or `import.meta.glob()` to ingest them.  
+- Use clean URLs: e.g. `/blog/slug-of-post`.  
+- The blog index page should list previews (title, excerpt, date).  
+- Individual blog pages should render the full content and include metadata (date, author if any).  
+- Include JSON-LD schema `BlogPosting` for each blog post for SEO.  
+
+## 4. Contact Form Rules
+
+- The form in `Contact.astro` should use `method="POST"` and connect to a serverless function or backend endpoint that sends mail via Gmail SMTP or via a function (e.g. Netlify Functions, Vercel Serverless, or a small Express Lambda).  
+- The form should have validation (client & server).  
+- CSRF / spam prevention (e.g. honeypot, recaptcha) optional but good.  
+- After successful submit, show a thank-you message / redirect.  
+- Ensure the form does not leak credentials (don’t embed SMTP password in client code).  
+
+## 5. Interactive FAQ Widget (“How can we help you?”)
+
+- The widget should render server-side with its markup (so HTML is present even if JS fails).  
+- Use minimal JS to handle expand / collapse.  
+- In HTML, include the list of question links (so crawler / SEO sees them).  
+- Use progressive enhancement: when JS is disabled, links still work (maybe panel always open or simple link list).  
+- For each question, use `<a href="/faq-question-slug">` or direct page link.  
+- The widget component should live in `components/FAQWidget.astro` or similar.  
+
+## 6. Cursor / CursorRules
+
+- The `CursorRules/` directory (or `src/components/CursorRules`) houses code for custom cursor effects.  
+- Avoid overuse of `document.querySelector` or heavy DOM manipulation; prefer abstractions and requestAnimationFrame.  
+- Cursor code should be isolated: e.g. a single `CursorProvider` / context that components can tap into.  
+- Cursor rules in `.mdc` should guide Cursor to understand that any code in `CursorRules/` is special and should not be overwritten casually.  
+- Cursor should prefer small, efficient code for cursor effects (no massive third-party packages).  
+
+## 7. Code Style / Quality
+
+- Use TypeScript in `.ts` / `.astro` where possible.  
+- Use consistent formatting (e.g. Prettier / eslint).  
+- Use name conventions: BEM or camelCase or as agreed.  
+- Don’t generate code that references non-existent files; Cursor should check for component existence.  
+- Encourage modular code (small functions, DRY).  
+- Prefer composability (wrap behaviors rather than hardcode).  
+
+---
+
+# Examples / Guidance to Cursor
+
+- When asked to generate a new page `services/ai-strategy.astro`, Cursor should set up frontmatter, meta tags, import the layout, etc.  
+- When generating blog post pages from JSON, Cursor should use `getStaticPaths` + `getStaticProps` style (Astro equivalent) pattern.  
+- When modifying the FAQ widget’s list, Cursor should update both the JSON / data file and the component markup.  
+- When adding cursor effect code, Cursor should assume you want the logic in `CursorRules/index.ts` and expose hooks / context to other components.

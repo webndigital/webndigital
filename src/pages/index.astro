@@ -1,0 +1,1399 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FAQWidget from '@components/FAQWidget.astro';
+import SolutionCard from '@components/SolutionCard.astro';
+import ValueCard from '@components/ValueCard.astro';
+import BlogCard from '@components/BlogCard.astro';
+
+const webProjects = [
+  { title: 'web & mobile app', subtitle: 'custom web design', image: '/images/ecommerce-custom.png', href: '/services/custom-web-design' },
+  { title: 'web & mobile app', subtitle: 'restaurant & cafe', image: '/images/pagamento.png', href: '/services/restaurant-cafe-websites' },
+  { title: 'web & mobile app', subtitle: 'corporate websites', image: '/images/magazzino.png', href: '/services/corporate-websites' },
+  { title: 'web & mobile app', subtitle: 'startup mvp', image: '/images/ios.png', href: '/services/startup-websites' },
+  { title: 'web & mobile app', subtitle: 'industrial', image: '/images/assistenti.png', href: '/services/industrial-websites' },
+  { title: 'web & mobile app', subtitle: 'architecture', image: '/images/raccomandazione.png', href: '/services/architecture-websites' },
+  { title: 'web & mobile app', subtitle: 'product showcase', image: '/images/sentiment.png', href: '/services/product-showcase' },
+  { title: 'web & mobile app', subtitle: 'e-commerce platform', image: '/images/forecasting.png', href: '/services/ecommerce-solutions' },
+  { title: 'web & mobile app', subtitle: 'cms solutions', image: '/images/planning.png', href: '/services/cms-solutions' },
+  { title: 'web & mobile app', subtitle: 'iOS app development', image: '/images/ios.png', href: '/services/ios-app-development' },
+  { title: 'web & mobile app', subtitle: 'Android app development', image: '/images/dashboard.png', href: '/services/android-app-development' },
+  { title: 'web & mobile app', subtitle: 'cross-platform apps', image: '/images/code-is-yours.png', href: '/services/cross-platform-apps' },
+  { title: 'web & mobile app', subtitle: 'progressive web apps', image: '/images/tailored-software.png', href: '/services/progressive-web-apps' },
+  { title: 'web & mobile app', subtitle: 'payment integration', image: '/images/pagamento.png', href: '/services/payment-integration' },
+  { title: 'web & mobile app', subtitle: 'inventory systems', image: '/images/magazzino.png', href: '/services/inventory-systems' },
+  { title: 'web & mobile app', subtitle: 'your idea', image: '/images/ai-algorithms.png', href: '/services/custom-solutions' }
+];
+
+const aiProjects = [
+  { title: 'artificial intelligence', subtitle: 'assistants', image: '/images/assistenti.png', href: '/ai-services/ai-assistants', overlay: 'purple' as const },
+  { title: 'artificial intelligence', subtitle: 'recommendations', image: '/images/raccomandazione.png', href: '/ai-services/ai-recommendations', overlay: 'purple' as const },
+  { title: 'artificial intelligence', subtitle: 'sentiment analysis', image: '/images/sentiment.png', href: '/ai-services/ai-sentiment-analysis', overlay: 'purple' as const },
+  { title: 'artificial intelligence', subtitle: 'forecasting', image: '/images/forecasting.png', href: '/ai-services/ai-forecasting', overlay: 'purple' as const }
+];
+
+const advertisingProjects = [
+  { title: 'advertising & marketing', subtitle: 'Google Ads', image: '/images/planning.png', href: '/advertising-services/google-ads', overlay: 'dark' as const },
+  { title: 'advertising & marketing', subtitle: 'Instagram Ads', image: '/images/finance.png', href: '/advertising-services/instagram-ads', overlay: 'dark' as const },
+  { title: 'advertising & marketing', subtitle: 'Facebook Ads', image: '/images/logistica.png', href: '/advertising-services/facebook-ads', overlay: 'dark' as const },
+  { title: 'advertising & marketing', subtitle: 'Budget Management', image: '/images/dashboard.png', href: '/advertising-services/budget-management', overlay: 'dark' as const }
+];
+
+const values = [
+  {
+    title: 'AI Algorithms.',
+    description: 'At WebnDigital, we develop customized Artificial Intelligence algorithms, starting from a thorough mathematical study. Our attention to detail allows us to create precise and targeted solutions, solving complex problems with the most advanced AI.',
+    image: '/images/ai-algorithms.png'
+  },
+  {
+    title: 'Tailored Software.',
+    description: 'We create custom software that precisely meets the specific needs of our clients. Every project is unique and developed with an artisanal approach, ensuring quality, efficiency, and innovation.',
+    image: '/images/tailored-software.png'
+  },
+  {
+    title: 'The code is yours.',
+    description: 'At the end of each project, the source code is entirely owned by the client. We believe in transparency and trust, ensuring that our clients have full control and autonomy over the developed solutions.',
+    image: '/images/code-is-yours.png'
+  }
+];
+
+const blogPosts = [
+  {
+    title: 'How AI and Machine Learning Are Transforming Modern Business Operations',
+    excerpt: 'Discover how artificial intelligence and machine learning are revolutionizing business processes, from customer service automation to predictive analytics and personalized experiences.',
+    image: '/images/blog/ai-business.png',
+    href: '/blog/ai-machine-learning-business',
+    category: 'Artificial Intelligence'
+  },
+  {
+    title: 'Mobile App Development in 2025: Trends, Technologies, and Best Practices',
+    excerpt: 'Explore the latest trends in mobile app development, from cross-platform frameworks to AI integration, and learn how to build apps that users love.',
+    image: '/images/blog/mobile-app-trends.png',
+    href: '/blog/mobile-app-development-2025',
+    category: 'Technology'
+  },
+  {
+    title: 'Building Successful E-Commerce Platforms: From Design to Conversion Optimization',
+    excerpt: 'Learn the essential strategies for creating high-converting e-commerce platforms, from user experience design to payment integration and inventory management.',
+    image: '/images/blog/ecommerce-success.png',
+    href: '/blog/ecommerce-success-strategies',
+    category: 'E-Commerce'
+  },
+  {
+    title: 'SEO Strategies for 2025: Boosting Organic Visibility in an AI-Driven Search Landscape',
+    excerpt: 'Master modern SEO techniques to improve your website\'s organic rankings, from technical optimization to content strategy and local SEO.',
+    image: '/images/blog/seo-strategies.png',
+    href: '/blog/seo-strategies-2025',
+    category: 'Digital Marketing'
+  },
+  {
+    title: 'Web Performance Optimization: Why Speed Matters and How to Achieve It',
+    excerpt: 'Discover how to build lightning-fast websites using modern frameworks like Astro, and learn why performance optimization is crucial for user experience and business success.',
+    image: '/images/blog/web-performance.png',
+    href: '/blog/web-performance-optimization',
+    category: 'Technology'
+  },
+  {
+    title: 'Restaurant Website Design: Creating Appetizing Digital Experiences That Drive Reservations',
+    excerpt: 'Learn how to create stunning restaurant websites that showcase your cuisine, streamline reservations, and convert hungry visitors into loyal customers.',
+    image: '/images/blog/restaurant-design.png',
+    href: '/blog/restaurant-web-design',
+    category: 'Design'
+  }
+];
+
+// Homepage Schema Markup
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://webndigital.com/#organization",
+      "name": "WebnDigital",
+      "url": "https://webndigital.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://webndigital.com/images/logo.png"
+      },
+      "description": "Leading AI solutions and digital transformation company.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+44-7902-844675",
+        "contactType": "customer service",
+        "email": "hello@webndigital.com"
+      },
+      "sameAs": [
+        "https://linkedin.com/company/webndigital",
+        "https://twitter.com/webndigital"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://webndigital.com/#website",
+      "url": "https://webndigital.com",
+      "name": "WebnDigital",
+      "publisher": {
+        "@id": "https://webndigital.com/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "serviceType": "AI & Digital Solutions",
+      "provider": {
+        "@id": "https://webndigital.com/#organization"
+      },
+      "areaServed": "Worldwide"
+    }
+  ]
+};
+---
+
+<BaseLayout 
+  title="WebnDigital - Artificial Intelligence, Make It Yours"
+  description="We work with Artificial Intelligence. This means two things: we solve problems and create new opportunities with custom AI solutions, web development, and digital advertising."
+  keywords="AI solutions, artificial intelligence, web development, digital transformation, machine learning, business intelligence, digital marketing, custom software development"
+  image="/og-image.png"
+  schema={homepageSchema}
+>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-gradient"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="hero-title-main" id="typewriter-main">Artificial Intelligence,</span>
+          <span class="hero-title-accent italic-serif" id="typewriter-accent">make it yours.</span>
+        </h1>
+        <p class="hero-description">
+          We work with Artificial Intelligence.<br>
+          This means two things: we solve problems and create new opportunities.
+        </p>
+        <div class="hero-faq">
+          <FAQWidget />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Web Projects Section -->
+  <section class="solutions-section section" id="web-solutions">
+    <div class="container">
+      <div class="solutions-header">
+        <div class="solutions-text">
+          <span class="solutions-label">Solutions</span>
+          <h2 class="solutions-title italic-serif">web & mobile app</h2>
+        </div>
+        <div class="solutions-actions">
+          <a href="/services" class="explore-all-link">
+            <span>Explore All</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button class="solutions-nav prev" aria-label="Previous" data-carousel="web">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="solutions-nav next" aria-label="Next" data-carousel="web">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="solutions-carousel-wrapper">
+      <div class="solutions-carousel" data-carousel-track="web">
+        {webProjects.map((project) => (
+          <SolutionCard
+            title={project.title}
+            category={project.title}
+            subtitle={project.subtitle}
+            image={project.image}
+            href={project.href}
+            overlayColor="blue"
+          />
+        ))}
+      </div>
+    </div>
+    <div class="container">
+      <div class="solutions-dots" data-dots="web">
+        {Array.from({ length: Math.ceil(webProjects.length / 4) }).map((_, i) => (
+          <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Projects Section -->
+  <section class="solutions-section section">
+    <div class="container">
+      <div class="solutions-header">
+        <div class="solutions-text">
+          <span class="solutions-label">Solutions</span>
+          <h2 class="solutions-title italic-serif">artificial intelligence</h2>
+        </div>
+        <div class="solutions-actions">
+          <a href="/services#ai" class="explore-all-link">
+            <span>Explore All</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button class="solutions-nav prev" aria-label="Previous" data-carousel="ai">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="solutions-nav next" aria-label="Next" data-carousel="ai">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="solutions-carousel-wrapper" data-wrapper="ai">
+      <div class="solutions-carousel" data-carousel-track="ai">
+        {aiProjects.map((project) => (
+          <SolutionCard
+            title={project.title}
+            category={project.title}
+            subtitle={project.subtitle}
+            image={project.image}
+            href={project.href}
+            overlayColor={project.overlay}
+          />
+        ))}
+      </div>
+    </div>
+    <div class="container">
+      <div class="solutions-dots" data-dots="ai">
+        {Array.from({ length: Math.ceil(aiProjects.length / 4) }).map((_, i) => (
+          <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Advertising & Marketing Section -->
+  <section class="solutions-section section" id="advertising-solutions">
+    <div class="container">
+      <div class="solutions-header">
+        <div class="solutions-text">
+          <span class="solutions-label">Solutions</span>
+          <h2 class="solutions-title italic-serif">advertising & marketing</h2>
+        </div>
+        <div class="solutions-actions">
+          <a href="/services#advertising" class="explore-all-link">
+            <span>Explore All</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button class="solutions-nav prev" aria-label="Previous" data-carousel="advertising">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="solutions-nav next" aria-label="Next" data-carousel="advertising">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="solutions-carousel-wrapper" data-wrapper="advertising">
+      <div class="solutions-carousel" data-carousel-track="advertising">
+        {advertisingProjects.map((project) => (
+          <SolutionCard
+            title={project.title}
+            category={project.title}
+            subtitle={project.subtitle}
+            image={project.image}
+            href={project.href}
+            overlayColor={project.overlay}
+          />
+        ))}
+      </div>
+    </div>
+    <div class="container">
+      <div class="solutions-dots" data-dots="advertising">
+        {Array.from({ length: Math.ceil(advertisingProjects.length / 4) }).map((_, i) => (
+          <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section section">
+    <div class="container">
+      <span class="cta-label">Solutions</span>
+      <h2 class="cta-title">Do you have a project in<br>mind?</h2>
+      <div class="cta-grid">
+        <a href="/contact?project=web" class="cta-card">
+          <div class="cta-card-bg">
+            <h3 class="cta-card-title">web project</h3>
+            <span class="cta-card-link">tell us more</span>
+            <svg class="cta-arrow" width="30" height="30" viewBox="0 0 30 30" fill="none">
+              <path d="M8 22L22 8M22 8H12M22 8V18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="/contact?project=ai" class="cta-card">
+          <div class="cta-card-bg">
+            <h3 class="cta-card-title">artificial<br>intelligence</h3>
+            <span class="cta-card-link">tell us more</span>
+            <svg class="cta-arrow" width="30" height="30" viewBox="0 0 30 30" fill="none">
+              <path d="M8 22L22 8M22 8H12M22 8V18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="/contact?project=bi" class="cta-card">
+          <div class="cta-card-bg">
+            <h3 class="cta-card-title">business<br>intelligence</h3>
+            <span class="cta-card-link">tell us more</span>
+            <svg class="cta-arrow" width="30" height="30" viewBox="0 0 30 30" fill="none">
+              <path d="M8 22L22 8M22 8H12M22 8V18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section section">
+    <div class="container">
+      <span class="section-label">Our Values</span>
+      <h2 class="section-title">Tailored Innovation</h2>
+      <div class="values-grid">
+        {values.map((value) => (
+          <ValueCard
+            title={value.title}
+            description={value.description}
+            image={value.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Logos Section -->
+  <section class="customers-section">
+    <div class="container">
+      <span class="customers-label">Our Customers</span>
+      <div class="customers-slider-wrapper">
+        <div class="customers-slider">
+          <div class="customers-slide">
+            {[1, 2, 3, 4].map((num) => (
+              <img src={`/images/customers/${num}.png`} alt={`Customer ${num}`} loading="lazy" />
+            ))}
+          </div>
+          <div class="customers-slide">
+            {[5, 6, 7, 8].map((num) => (
+              <img src={`/images/customers/${num}.png`} alt={`Customer ${num}`} loading="lazy" />
+            ))}
+          </div>
+          <div class="customers-slide">
+            {[9, 10, 11, 12].map((num) => (
+              <img src={`/images/customers/${num}.png`} alt={`Customer ${num}`} loading="lazy" />
+            ))}
+          </div>
+          <div class="customers-slide">
+            {[13, 1, 2, 3].map((num) => (
+              <img src={`/images/customers/${num}.png`} alt={`Customer ${num}`} loading="lazy" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Sections -->
+  <section class="about-sections section-sm">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-card">
+          <h2 class="about-title">
+            <span class="about-title-main">Software,</span>
+            <span class="about-title-accent italic-serif">in the era of the future.</span>
+          </h2>
+          <p class="about-text">
+            We are a dynamic and innovative entity: we take on technological market challenges and transform them into concrete opportunities. With a forward-looking approach, we develop advanced solutions that meet the ever-evolving needs of our clients, always ensuring excellence, efficiency, and innovation.
+          </p>
+          <a href="/about" class="about-link">
+            Discover WebnDigital
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="about-card">
+          <h2 class="about-title">
+            <span class="about-title-main">There is a better way,</span>
+            <span class="about-title-accent italic-serif">to innovate.</span>
+          </h2>
+          <p class="about-text">
+            As a natural extension of your corporate team, we work side by side with you to develop tailor-made products that combine innovation and advanced technology. Our goal is to create high-value solutions that specifically address the unique needs of each business.
+          </p>
+          <a href="/about#team" class="about-link">
+            Meet the Team
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO Quote Section -->
+  <section class="ceo-section section-sm">
+    <div class="container">
+      <div class="ceo-content">
+        <h2 class="ceo-heading">Let us tell you about a<br>new world: <span class="italic-serif">ours.</span></h2>
+        <p class="ceo-text">
+          Welcome to WebnDigital. We are pioneers in using Artificial Intelligence to create innovative solutions and improve people's lives. We believe that the journey towards innovation is as important as the destination. Our mission is simple: use technology to make a difference.
+        </p>
+        <div class="ceo-profile">
+          <img src="/images/ceo-profile.png" alt="CEO" class="ceo-avatar" loading="lazy" />
+          <div class="ceo-info">
+            <p class="ceo-name">M.John Sezan</p>
+            <p class="ceo-title">CEO, WebnDigital</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="blog-section section">
+    <div class="container">
+      <div class="blog-grid">
+        {blogPosts.map((post) => (
+          <BlogCard
+            title={post.title}
+            excerpt={post.excerpt}
+            image={post.image}
+            href={post.href}
+            category={post.category}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    z-index: 100;
+    isolation: isolate;
+  }
+  
+  .hero-gradient {
+    position: absolute;
+    top: -150px;
+    left: -264px;
+    width: 768px;
+    height: 750px;
+    background: var(--gradient-primary);
+    border-radius: 0 0 300px 0;
+    z-index: 0;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 900px;
+    max-width: 100%;
+    margin-left: auto;
+    background: var(--color-white);
+    padding: 3.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-hero);
+    overflow: visible;
+  }
+  
+  .hero-title {
+    margin-bottom: 2rem;
+    min-height: 200px;
+  }
+  
+  .hero-title-main {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 4.375rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+    min-height: 91px;
+  }
+  
+  .hero-title-main::after {
+    content: '|';
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  
+  .hero-title-main.typing-complete::after {
+    content: '';
+    animation: none;
+  }
+  
+  .hero-title-accent {
+    display: block;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1.125;
+    min-height: 1.2em;
+    opacity: 0;
+  }
+  
+  .hero-title-accent.visible {
+    opacity: 1;
+  }
+  
+  .hero-title-accent::after {
+    content: '|';
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  
+  .hero-title-accent.typing-complete::after {
+    content: '';
+    animation: none;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  .hero-description {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin-bottom: 3rem;
+    max-width: 600px;
+  }
+  
+  .hero-faq {
+    max-width: 912px;
+    position: relative;
+    z-index: 10000;
+    isolation: isolate;
+  }
+  
+  /* Solutions Section */
+  .solutions-section {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+  }
+  
+  .solutions-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+  
+  .solutions-text {
+    flex: 1;
+  }
+  
+  .solutions-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .solutions-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    line-height: 1.5;
+  }
+  
+  .solutions-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .explore-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(0, 145, 255, 0.08);
+    transition: all var(--transition-base);
+  }
+  
+  .explore-all-link:hover {
+    background: rgba(0, 145, 255, 0.15);
+    gap: 0.75rem;
+  }
+  
+  .explore-all-link svg {
+    transition: transform var(--transition-base);
+  }
+  
+  .explore-all-link:hover svg {
+    transform: translateX(2px);
+  }
+  
+  .solutions-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+  }
+  
+  .solutions-nav:hover {
+    background: var(--color-accent);
+    transform: scale(1.1);
+  }
+  
+  .solutions-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  
+  .solutions-nav:disabled:hover {
+    transform: scale(1);
+    background: var(--color-primary);
+  }
+  
+  .solutions-carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .solutions-carousel {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    flex-wrap: nowrap;
+  }
+  
+  #web-solutions .solutions-carousel-wrapper,
+  .solutions-section .solutions-carousel-wrapper {
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+    width: 100%;
+    max-width: 1392px;
+    margin: 0 auto 2rem auto;
+    position: relative;
+    padding: 0 2rem;
+  }
+  
+  #web-solutions .solutions-carousel,
+  .solutions-section .solutions-carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(25% - 1.5rem);
+    gap: 2rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  #web-solutions .solutions-carousel > *,
+  .solutions-section .solutions-carousel > * {
+    width: 100%;
+  }
+  
+  .solutions-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  
+  .dot {
+    width: 32px;
+    height: 6px;
+    border-radius: 3px;
+    background: #D8D8D8;
+    transition: all var(--transition-base);
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background: var(--color-primary);
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    background: var(--color-white);
+  }
+  
+  .cta-label {
+    display: block;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cta-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+  
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .cta-card {
+    display: block;
+    height: 500px;
+    background: var(--color-bg-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-base);
+  }
+  
+  .cta-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .cta-card-bg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--gradient-primary);
+    color: var(--color-white);
+  }
+  
+  .cta-card-title {
+    font-size: 2.125rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  
+  .cta-card-link {
+    display: block;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cta-arrow {
+    align-self: flex-start;
+  }
+  
+  /* Values Section */
+  .values-section {
+    background: var(--color-white);
+  }
+  
+  .section-label {
+    display: block;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Customers Section */
+  .customers-section {
+    padding: 3rem 0;
+    background: var(--color-bg-gray);
+  }
+  
+  .customers-label {
+    display: block;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-gray);
+    margin-bottom: 2rem;
+  }
+  
+  .customers-slider-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .customers-slider {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .customers-slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  .customers-slide img {
+    height: 100px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: all var(--transition-base);
+    filter: grayscale(100%);
+  }
+  
+  .customers-slide img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
+  
+  /* About Sections */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+  }
+  
+  .about-card {
+    background: var(--color-white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .about-title {
+    margin-bottom: 2rem;
+  }
+  
+  .about-title-main {
+    display: block;
+    font-size: clamp(2rem, 4vw, 4.375rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+  
+  .about-title-accent {
+    display: block;
+    font-size: clamp(1.75rem, 3.5vw, 4rem);
+    line-height: 1.125;
+  }
+  
+  .about-text {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  
+  .about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-accent);
+    transition: gap var(--transition-base);
+  }
+  
+  .about-link:hover {
+    gap: 0.75rem;
+  }
+  
+  /* CEO Section */
+  .ceo-section {
+    background: var(--color-bg-light);
+  }
+  
+  .ceo-content {
+    max-width: 696px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .ceo-heading {
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 400;
+    line-height: 1.125;
+    margin-bottom: 2rem;
+  }
+  
+  .ceo-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 2.5rem;
+  }
+  
+  .ceo-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .ceo-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .ceo-info {
+    text-align: left;
+  }
+  
+  .ceo-name {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+  }
+  
+  .ceo-title {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-accent);
+  }
+  
+  /* Blog Section */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .hero-section {
+      min-height: 500px;
+      padding: 3rem 0;
+    }
+    
+    .hero-gradient {
+      width: 600px;
+      height: 600px;
+      top: -100px;
+      left: -100px;
+    }
+    
+    .hero-content {
+      padding: 2.5rem 2rem;
+      width: 100%;
+    }
+    
+    .hero-title {
+      min-height: 160px;
+    }
+    
+    .hero-title-main {
+      font-size: clamp(2rem, 6vw, 3rem);
+      min-height: 70px;
+    }
+    
+    .hero-title-accent {
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+    }
+    
+    .hero-description {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .solutions-grid,
+    .values-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    #web-solutions .solutions-carousel,
+    .solutions-section .solutions-carousel {
+      grid-auto-columns: calc(33.333% - 1.333rem);
+    }
+    
+    #web-solutions .solutions-carousel-wrapper,
+    .solutions-section .solutions-carousel-wrapper {
+      padding: 0 1.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 450px;
+      padding: 2.5rem 0;
+    }
+    
+    .hero-gradient {
+      width: 100%;
+      height: 500px;
+      left: 0;
+      top: -80px;
+      border-radius: 0 0 200px 0;
+    }
+    
+    .hero-content {
+      padding: 2rem 1.5rem;
+      margin: 0;
+    }
+    
+    .hero-title {
+      min-height: 140px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero-title-main {
+      font-size: clamp(1.75rem, 8vw, 2.5rem);
+      min-height: auto;
+      margin-bottom: 0.75rem;
+    }
+    
+    .hero-title-accent {
+      font-size: clamp(1.5rem, 7vw, 2rem);
+    }
+    
+    .hero-description {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    #web-solutions .solutions-carousel,
+    .solutions-section .solutions-carousel {
+      grid-auto-columns: calc(50% - 1rem);
+    }
+    
+    #web-solutions .solutions-carousel-wrapper,
+    .solutions-section .solutions-carousel-wrapper {
+      padding: 0 1rem;
+    }
+    
+    .explore-all-link {
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #web-solutions .solutions-carousel,
+    .solutions-section .solutions-carousel {
+      grid-auto-columns: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .customers-section {
+      padding: 2.5rem 0;
+    }
+    
+    .customers-label {
+      font-size: 0.8125rem;
+      margin-bottom: 1.75rem;
+    }
+    
+    .customers-slide {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding: 0 1rem;
+      justify-items: center;
+    }
+    
+    .customers-slide img {
+      height: 80px;
+      max-width: 160px;
+    }
+    
+    .customers-slide img:nth-child(n+3) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-section {
+      min-height: 400px;
+      padding: 2rem 0;
+    }
+    
+    .hero-gradient {
+      height: 450px;
+      top: -60px;
+      border-radius: 0 0 150px 0;
+    }
+    
+    .hero-content {
+      padding: 1.5rem 1.25rem;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .hero-title {
+      min-height: 120px;
+      margin-bottom: 1.25rem;
+    }
+    
+    .hero-title-main {
+      font-size: clamp(1.5rem, 10vw, 2rem);
+      line-height: 1.15;
+    }
+    
+    .hero-title-accent {
+      font-size: clamp(1.375rem, 9vw, 1.75rem);
+    }
+    
+    .hero-description {
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .hero-description br {
+      display: none;
+    }
+    
+    .customers-section {
+      padding: 2rem 0;
+    }
+    
+    .customers-label {
+      font-size: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .customers-slide {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      padding: 0 0.75rem;
+      justify-items: center;
+    }
+    
+    .customers-slide img {
+      height: 60px;
+      max-width: 120px;
+    }
+    
+    .customers-slide img:nth-child(n+3) {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Typewriter animation for hero title
+  function typeWriter(element: HTMLElement, text: string, speed: number = 80): Promise<void> {
+    return new Promise((resolve) => {
+      element.textContent = '';
+      let i = 0;
+      
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          element.classList.add('typing-complete');
+          setTimeout(() => resolve(), 500);
+        }
+      }
+      
+      type();
+    });
+  }
+
+  async function initTypewriter() {
+    const mainTitle = document.getElementById('typewriter-main');
+    const accentTitle = document.getElementById('typewriter-accent');
+    
+    if (mainTitle && accentTitle) {
+      // Wait a bit before starting
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Type main title
+      await typeWriter(mainTitle, 'Artificial Intelligence,', 80);
+      
+      // Show and type accent title
+      accentTitle.classList.add('visible');
+      await typeWriter(accentTitle, 'make it yours.', 80);
+    }
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTypewriter);
+  } else {
+    initTypewriter();
+  }
+
+  // Run on Astro page transitions
+  document.addEventListener('astro:page-load', () => {
+    if (window.location.pathname === '/') {
+      initTypewriter();
+    }
+  });
+
+  // Carousel functionality
+  function initCarousel(carouselId: string) {
+    const wrapper = document.querySelector(`[data-carousel-track="${carouselId}"]`)?.parentElement as HTMLElement;
+    const track = document.querySelector(`[data-carousel-track="${carouselId}"]`) as HTMLElement;
+    const prevBtn = document.querySelector(`[data-carousel="${carouselId}"].prev`) as HTMLButtonElement;
+    const nextBtn = document.querySelector(`[data-carousel="${carouselId}"].next`) as HTMLButtonElement;
+    const dotsContainer = document.querySelector(`[data-dots="${carouselId}"]`) as HTMLElement;
+    
+    if (!track || !prevBtn || !nextBtn || !dotsContainer || !wrapper) return;
+    
+    const itemsPerPage = 4;
+    const totalItems = track.children.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    let currentPage = 0;
+    
+    // Hide navigation buttons if items <= 4
+    if (totalItems <= 4) {
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      dotsContainer.style.display = 'none';
+      return; // Don't initialize carousel functionality
+    }
+    
+    function updateCarousel() {
+      // Grid için container genişliği + gap kadar kaydır
+      const containerWidth = wrapper.offsetWidth;
+      const offset = currentPage * containerWidth;
+      
+      track.style.transform = `translateX(-${offset}px)`;
+      
+      // Update button states
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = currentPage === totalPages - 1;
+      
+      // Update dots
+      const dots = dotsContainer.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentPage);
+      });
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        updateCarousel();
+      }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages - 1) {
+        currentPage++;
+        updateCarousel();
+      }
+    });
+    
+    // Dot navigation
+    const dots = dotsContainer.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentPage = index;
+        updateCarousel();
+      });
+    });
+    
+    // Update on resize
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        currentPage = 0; // Reset to first page on resize
+        updateCarousel();
+      }, 100);
+    });
+    
+    // İlk yüklemede biraz bekle ki kartlar render olsun
+    setTimeout(updateCarousel, 100);
+  }
+  
+  // Initialize carousels
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initCarousel('web');
+      initCarousel('ai');
+      initCarousel('advertising');
+    });
+  } else {
+    initCarousel('web');
+    initCarousel('ai');
+    initCarousel('advertising');
+  }
+
+  // Customer logos auto slider
+  function initCustomersSlider() {
+    const slider = document.querySelector('.customers-slider') as HTMLElement;
+    if (!slider) return;
+
+    let currentSlide = 0;
+    const totalSlides = slider.children.length;
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      const offset = currentSlide * -100;
+      slider.style.transform = `translateX(${offset}%)`;
+    }
+
+    // Auto slide every 5 seconds
+    setInterval(nextSlide, 5000);
+  }
+
+  // Initialize customers slider
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCustomersSlider);
+  } else {
+    initCustomersSlider();
+  }
+</script>
+
