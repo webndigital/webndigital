@@ -17,9 +17,6 @@
       <button class="cookie-btn cookie-btn-reject" id="reject-cookies">
         Reject all
       </button>
-      <button class="cookie-btn cookie-btn-manage" id="manage-cookies">
-        Manage Individual preferences
-      </button>
     </div>
   </div>
 </div>
@@ -69,7 +66,7 @@
   
   .cookie-actions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.75rem;
     padding-top: 1rem;
     border-top: 1px solid #F0F4F7;
@@ -110,23 +107,16 @@
     border-color: #007AD9;
   }
   
-  .cookie-btn-manage {
-    background: #EAEFF2;
-    color: var(--color-text-dark);
-    border-color: #EAEFF2;
-  }
-  
-  .cookie-btn-manage:hover {
-    background: #D8DDE0;
-    border-color: #D8DDE0;
-  }
-  
   @media (max-width: 768px) {
     .cookie-consent {
       left: 1rem;
       right: 1rem;
       bottom: 1rem;
       max-width: none;
+    }
+    
+    .cookie-actions {
+      flex-direction: column;
     }
   }
 </style>
@@ -179,13 +169,6 @@
     setCookie(COOKIE_NAME, 'rejected', COOKIE_EXPIRY_DAYS);
     hideCookieConsent();
     console.log('Cookies rejected');
-  });
-  
-  // Manage cookies (for now, same as reject)
-  document.getElementById('manage-cookies')?.addEventListener('click', () => {
-    setCookie(COOKIE_NAME, 'managed', COOKIE_EXPIRY_DAYS);
-    hideCookieConsent();
-    console.log('Cookie preferences managed');
   });
   
   // Show consent on page load

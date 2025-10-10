@@ -93,11 +93,26 @@ export const POST: APIRoute = async ({ request }) => {
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.error('❌ Contact form error:', error);
+    
+    // Detailed error logging for debugging
+    if (error instanceof Error) {
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
+    
+    // Check if it's an authentication error
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const isAuthError = errorMessage.includes('authentication') || errorMessage.includes('Invalid login');
+    
     return new Response(
       JSON.stringify({ 
-        error: 'Failed to send message. Please try again or contact us directly.',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        error: isAuthError 
+          ? 'Email authentication failed. Please check your email credentials.' 
+          : 'Failed to send message. Please try again or contact us directly.',
+        details: errorMessage,
+        hint: isAuthError ? 'Check EMAIL_USER and EMAIL_PASSWORD in Vercel Environment Variables' : undefined
       }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
