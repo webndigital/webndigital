@@ -92,6 +92,8 @@ const faqQuestions = [
     color: rgba(0, 0, 0, 0.87);
     outline: none;
     min-width: 0;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   
   .faq-input::placeholder {
@@ -379,19 +381,26 @@ const faqQuestions = [
     
     .faq-input-container {
       z-index: 10002;
+      max-width: 100%;
+    }
+    
+    .faq-input {
+      font-size: 16px;
+      padding: 1rem;
     }
     
     .faq-dropdown {
       left: 0;
       right: 0;
-      transform: translateY(-8px) scale(0.96);
+      transform: translateY(-8px);
       width: 100%;
       max-width: none;
       z-index: 99999;
+      margin-top: 0.5rem;
     }
     
     .faq-dropdown.open {
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
     
     .faq-list {
@@ -401,6 +410,10 @@ const faqQuestions = [
     .faq-link {
       font-size: 0.875rem;
       padding: 0.875rem 1rem;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
     
     .ai-result {
