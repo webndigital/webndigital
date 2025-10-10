@@ -61,7 +61,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Send email
     await transporter.sendMail({
       from: emailUser,
-      to: emailUser, // Send to yourself
+      to: 'hello@webndigital.co.uk', // Send to company email
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
