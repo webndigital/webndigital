@@ -722,6 +722,15 @@ const homepageSchema = {
     grid-auto-columns: calc(25% - 1.5rem);
     gap: 2rem;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: pan-y pinch-zoom;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+  }
+  
+  #web-solutions .solutions-carousel:active,
+  .solutions-section .solutions-carousel:active {
+    cursor: grabbing;
   }
   
   #web-solutions .solutions-carousel > *,
@@ -1385,6 +1394,60 @@ const homepageSchema = {
       const index = parseInt(dot.getAttribute('data-index') || '0');
       currentPage = index;
       updateCarousel();
+    });
+    
+    // Touch/Swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    let isSwiping = false;
+    
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isSwiping = true;
+    }, { passive: true });
+    
+    track.addEventListener('touchmove', (e) => {
+      if (!isSwiping) return;
+      touchEndX = e.touches[0].clientX;
+      touchEndY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    track.addEventListener('touchend', () => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      
+      const swipeDistanceX = touchStartX - touchEndX;
+      const swipeDistanceY = Math.abs(touchStartY - touchEndY);
+      const minSwipeDistance = 50;
+      
+      // Only trigger if horizontal swipe is more dominant than vertical
+      if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > swipeDistanceY) {
+        const itemsPerPage = getItemsPerPage();
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        
+        if (swipeDistanceX > 0) {
+          // Swiped left - go to next
+          if (currentPage < totalPages - 1) {
+            currentPage++;
+            updateCarousel();
+          }
+        } else {
+          // Swiped right - go to previous
+          if (currentPage > 0) {
+            currentPage--;
+            updateCarousel();
+          }
+        }
+      }
+      
+      // Reset touch coordinates
+      touchStartX = 0;
+      touchEndX = 0;
+      touchStartY = 0;
+      touchEndY = 0;
     });
     
     // Update on resize
