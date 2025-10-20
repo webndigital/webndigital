@@ -699,9 +699,11 @@ const homepageSchema = {
   .solutions-carousel {
     display: flex;
     gap: 2rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
     flex-wrap: nowrap;
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
   }
   
   #web-solutions .solutions-carousel-wrapper,
@@ -721,10 +723,11 @@ const homepageSchema = {
     grid-auto-flow: column;
     grid-auto-columns: calc(25% - 1.5rem);
     gap: 2rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     touch-action: pan-y pinch-zoom;
     user-select: none;
     -webkit-user-select: none;
+    -webkit-overflow-scrolling: touch;
     cursor: grab;
   }
   
@@ -1396,59 +1399,107 @@ const homepageSchema = {
       updateCarousel();
     });
     
-    // Touch/Swipe support for mobile
+    // Enhanced Touch/Swipe support with real-time feedback
     let touchStartX = 0;
-    let touchEndX = 0;
+    let touchCurrentX = 0;
     let touchStartY = 0;
-    let touchEndY = 0;
-    let isSwiping = false;
+    let touchCurrentY = 0;
+    let isDragging = false;
+    let startTransform = 0;
+    let hasMovedHorizontally = false;
     
     track.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
-      isSwiping = true;
+      touchCurrentX = touchStartX;
+      isDragging = true;
+      hasMovedHorizontally = false;
+      
+      // Get current transform value
+      const containerWidth = wrapper.offsetWidth;
+      startTransform = currentPage * containerWidth;
+      
+      // Disable transition for immediate feedback
+      track.style.transition = 'none';
     }, { passive: true });
     
     track.addEventListener('touchmove', (e) => {
-      if (!isSwiping) return;
-      touchEndX = e.touches[0].clientX;
-      touchEndY = e.touches[0].clientY;
-    }, { passive: true });
+      if (!isDragging) return;
+      
+      touchCurrentX = e.touches[0].clientX;
+      touchCurrentY = e.touches[0].clientY;
+      
+      const deltaX = touchCurrentX - touchStartX;
+      const deltaY = Math.abs(touchCurrentY - touchStartY);
+      
+      // Determine if this is a horizontal swipe
+      if (!hasMovedHorizontally && Math.abs(deltaX) > 10) {
+        hasMovedHorizontally = Math.abs(deltaX) > deltaY;
+      }
+      
+      // Only move carousel if horizontal swipe is detected
+      if (hasMovedHorizontally && Math.abs(deltaX) > deltaY) {
+        // Prevent page scroll
+        e.preventDefault();
+        
+        // Apply real-time transform with resistance at boundaries
+        const itemsPerPage = getItemsPerPage();
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const containerWidth = wrapper.offsetWidth;
+        
+        let newTransform = startTransform - deltaX;
+        
+        // Add resistance at boundaries
+        const minTransform = 0;
+        const maxTransform = (totalPages - 1) * containerWidth;
+        
+        if (newTransform < minTransform) {
+          // Resistance at start
+          newTransform = minTransform - (minTransform - newTransform) * 0.3;
+        } else if (newTransform > maxTransform) {
+          // Resistance at end
+          newTransform = maxTransform + (newTransform - maxTransform) * 0.3;
+        }
+        
+        track.style.transform = `translateX(-${newTransform}px)`;
+      }
+    }, { passive: false });
     
     track.addEventListener('touchend', () => {
-      if (!isSwiping) return;
-      isSwiping = false;
+      if (!isDragging) return;
+      isDragging = false;
       
-      const swipeDistanceX = touchStartX - touchEndX;
-      const swipeDistanceY = Math.abs(touchStartY - touchEndY);
-      const minSwipeDistance = 50;
+      // Re-enable transition
+      track.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
       
-      // Only trigger if horizontal swipe is more dominant than vertical
-      if (Math.abs(swipeDistanceX) > minSwipeDistance && Math.abs(swipeDistanceX) > swipeDistanceY) {
+      const deltaX = touchStartX - touchCurrentX;
+      const deltaY = Math.abs(touchCurrentY - touchStartY);
+      const threshold = 30; // Lower threshold for easier swiping
+      
+      // Only trigger page change if horizontal swipe
+      if (hasMovedHorizontally && Math.abs(deltaX) > threshold && Math.abs(deltaX) > deltaY) {
         const itemsPerPage = getItemsPerPage();
         const totalPages = Math.ceil(totalItems / itemsPerPage);
         
-        if (swipeDistanceX > 0) {
+        if (deltaX > 0 && currentPage < totalPages - 1) {
           // Swiped left - go to next
-          if (currentPage < totalPages - 1) {
-            currentPage++;
-            updateCarousel();
-          }
-        } else {
+          currentPage++;
+        } else if (deltaX < 0 && currentPage > 0) {
           // Swiped right - go to previous
-          if (currentPage > 0) {
-            currentPage--;
-            updateCarousel();
-          }
+          currentPage--;
         }
       }
       
-      // Reset touch coordinates
+      // Update to nearest page
+      updateCarousel();
+      
+      // Reset
       touchStartX = 0;
-      touchEndX = 0;
+      touchCurrentX = 0;
       touchStartY = 0;
-      touchEndY = 0;
-    });
+      touchCurrentY = 0;
+      hasMovedHorizontally = false;
+    }, { passive: true });
     
     // Update on resize
     let resizeTimeout: ReturnType<typeof setTimeout>;
