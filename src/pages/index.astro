@@ -218,7 +218,7 @@ const homepageSchema = {
     </div>
     <div class="container">
       <div class="solutions-dots" data-dots="web">
-        {Array.from({ length: Math.ceil(webProjects.length / 4) }).map((_, i) => (
+        {Array.from({ length: 4 }).map((_, i) => (
           <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
         ))}
       </div>
@@ -269,7 +269,7 @@ const homepageSchema = {
     </div>
     <div class="container">
       <div class="solutions-dots" data-dots="ai">
-        {Array.from({ length: Math.ceil(aiProjects.length / 4) }).map((_, i) => (
+        {Array.from({ length: 4 }).map((_, i) => (
           <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
         ))}
       </div>
@@ -320,7 +320,7 @@ const homepageSchema = {
     </div>
     <div class="container">
       <div class="solutions-dots" data-dots="advertising">
-        {Array.from({ length: Math.ceil(advertisingProjects.length / 4) }).map((_, i) => (
+        {Array.from({ length: 4 }).map((_, i) => (
           <span class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></span>
         ))}
       </div>
@@ -1421,6 +1421,12 @@ const homepageSchema = {
       
       // Disable transition for immediate feedback
       track.style.transition = 'none';
+      
+      // Disable pointer events on cards during drag
+      const cards = track.querySelectorAll('.solution-card');
+      cards.forEach(card => {
+        (card as HTMLElement).style.pointerEvents = 'none';
+      });
     }, { passive: true });
     
     track.addEventListener('touchmove', (e) => {
@@ -1475,6 +1481,14 @@ const homepageSchema = {
       const deltaX = touchStartX - touchCurrentX;
       const deltaY = Math.abs(touchCurrentY - touchStartY);
       const threshold = 30; // Lower threshold for easier swiping
+      
+      // Re-enable pointer events on cards after drag
+      const cards = track.querySelectorAll('.solution-card');
+      setTimeout(() => {
+        cards.forEach(card => {
+          (card as HTMLElement).style.pointerEvents = 'auto';
+        });
+      }, 50);
       
       // Only trigger page change if horizontal swipe
       if (hasMovedHorizontally && Math.abs(deltaX) > threshold && Math.abs(deltaX) > deltaY) {

@@ -39,9 +39,11 @@ const overlayColors = {
     transition: all var(--transition-base);
   }
   
-  .solution-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+  @media (hover: hover) and (pointer: fine) {
+    .solution-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
   }
   
   .solution-image {
@@ -56,20 +58,26 @@ const overlayColors = {
     height: 100%;
     object-fit: cover;
     transition: transform var(--transition-slow);
+    pointer-events: none;
   }
   
-  .solution-card:hover .solution-image img {
-    transform: scale(1.05);
+  @media (hover: hover) and (pointer: fine) {
+    .solution-card:hover .solution-image img {
+      transform: scale(1.05);
+    }
   }
   
   .solution-overlay {
     position: absolute;
     inset: 0;
     transition: opacity var(--transition-base);
+    pointer-events: none;
   }
   
-  .solution-card:hover .solution-overlay {
-    opacity: 0.85;
+  @media (hover: hover) and (pointer: fine) {
+    .solution-card:hover .solution-overlay {
+      opacity: 0.85;
+    }
   }
   
   .solution-content {
@@ -81,6 +89,7 @@ const overlayColors = {
     height: 100%;
     padding: 2.5rem;
     color: var(--color-white);
+    pointer-events: none;
   }
   
   .solution-category {
