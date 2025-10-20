@@ -592,23 +592,35 @@ const contactSchema = {
     .customers-slide {
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
+      padding: 0 1rem;
+      justify-items: center;
     }
     
     .customers-slide img {
       height: 70px;
       max-width: 150px;
     }
+    
+    .customers-slide img:nth-child(n+3) {
+      display: none;
+    }
   }
 
   @media (max-width: 480px) {
     .customers-slide {
       grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+      gap: 1.5rem;
+      padding: 0 0.75rem;
+      justify-items: center;
     }
     
     .customers-slide img {
-      height: 50px;
-      max-width: 100px;
+      height: 60px;
+      max-width: 120px;
+    }
+    
+    .customers-slide img:nth-child(n+3) {
+      display: none;
     }
   }
 </style>
