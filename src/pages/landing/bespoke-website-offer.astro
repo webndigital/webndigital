@@ -1,0 +1,1270 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const title = 'Bespoke Website Design - Limited-Time Offer from £750 | WebnDigital';
+const description = 'Custom-designed websites with free hosting, SEO optimisation, and lifetime support. Limited availability - start your project today from £750.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="landing-hero">
+    <div class="container">
+      <div class="hero-badge">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2L12.3 7.5L18 8.3L14 12.2L15 18L10 15.3L5 18L6 12.2L2 8.3L7.7 7.5L10 2Z" fill="currentColor"/>
+        </svg>
+        <span>Limited-Time Offer - Only 5 Spots Available</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Bespoke Website Design<br>
+        <span class="gradient-text">From £750</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Custom-designed, high-performance websites tailored exclusively to your brand.<br>
+        <strong>Free hosting, SEO & lifetime consulting included.</strong>
+      </p>
+      
+      <div class="hero-cta">
+        <a href="https://wa.me/447902844675?text=Hi%2C%20I'm%20interested%20in%20the%20bespoke%20website%20offer" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn btn-primary btn-lg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-right: 10px;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"/>
+          </svg>
+          Start WhatsApp Chat Now
+        </a>
+        <a href="#packages" class="btn btn-secondary btn-lg">
+          View Packages & Pricing
+        </a>
+      </div>
+      
+      <!-- Trust Badges -->
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <div class="badge-icon">⚡</div>
+          <div class="badge-text">
+            <strong>90+ Speed Score</strong>
+            <span>Lightning-fast websites</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <div class="badge-icon">🎯</div>
+          <div class="badge-text">
+            <strong>90+ SEO Score</strong>
+            <span>Optimized for Google</span>
+          </div>
+        </div>
+        <div class="trust-badge">
+          <div class="badge-icon">✨</div>
+          <div class="badge-text">
+            <strong>100% Custom</strong>
+            <span>No generic templates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included Section -->
+  <section class="included-section">
+    <div class="container">
+      <h2 class="section-title">What's Included in This Limited-Time Offer</h2>
+      <p class="section-subtitle">Everything you need to launch a professional online presence</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Custom-Designed Website</h3>
+          <p>Tailored exclusively to your brand identity. No templates, no compromises. Every pixel designed with your business goals in mind.</p>
+          <ul class="feature-list">
+            <li>Unique brand-focused design</li>
+            <li>Custom color schemes & typography</li>
+            <li>Responsive on all devices</li>
+            <li>Modern UI/UX best practices</li>
+          </ul>
+        </div>
+
+        <div class="feature-card featured">
+          <div class="featured-badge">Most Popular</div>
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Free Hosting - First Year</h3>
+          <p>Enterprise-grade hosting powered by Vercel. Fast, secure, and reliable. Save £200+ in hosting costs.</p>
+          <ul class="feature-list">
+            <li>Global CDN for fast loading</li>
+            <li>99.9% uptime guarantee</li>
+            <li>SSL certificate included</li>
+            <li>Automatic backups</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Free SEO Optimisation</h3>
+          <p>Get found on Google. We optimize every page for search engines, helping you rank higher and attract more customers.</p>
+          <ul class="feature-list">
+            <li>On-page SEO optimization</li>
+            <li>Meta tags & descriptions</li>
+            <li>Schema markup integration</li>
+            <li>Performance optimization</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Lifetime Technology Consulting</h3>
+          <p>Ongoing expert support at no extra cost. We're here to help your business grow, whenever you need us.</p>
+          <ul class="feature-list">
+            <li>Unlimited consultation calls</li>
+            <li>Technical support & advice</li>
+            <li>Growth strategy guidance</li>
+            <li>Priority email support</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <path d="M3 3v18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="m19 9-5 5-4-4-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Google Analytics Setup</h3>
+          <p>Understand your audience with professional analytics. Track visitors, conversions, and make data-driven decisions.</p>
+          <ul class="feature-list">
+            <li>Full analytics integration</li>
+            <li>Custom event tracking</li>
+            <li>Conversion goal setup</li>
+            <li>Monthly insights reports</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Security & Performance</h3>
+          <p>Built with modern technology for speed and security. Your website will be fast, secure, and always up-to-date.</p>
+          <ul class="feature-list">
+            <li>HTTPS/SSL encryption</li>
+            <li>DDoS protection</li>
+            <li>Regular security updates</li>
+            <li>Performance monitoring</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages Section -->
+  <section class="packages-section" id="packages">
+    <div class="container">
+      <h2 class="section-title">Choose Your Package</h2>
+      <p class="section-subtitle">All packages include free hosting, SEO, and lifetime consulting</p>
+      
+      <div class="packages-grid">
+        <!-- Starter Package -->
+        <div class="package-card">
+          <div class="package-header">
+            <h3 class="package-name">Starter</h3>
+            <div class="package-price">
+              <span class="currency">£</span>
+              <span class="amount">750</span>
+            </div>
+            <p class="package-desc">Perfect for small businesses and startups</p>
+          </div>
+          <ul class="package-features">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Up to 5 pages
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Mobile responsive design
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Contact form integration
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Basic SEO optimization
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              1 year free hosting
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Google Analytics setup
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              2 weeks delivery
+            </li>
+          </ul>
+          <a href="https://wa.me/447902844675?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20package%20(£750)" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn btn-outline">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Professional Package -->
+        <div class="package-card recommended">
+          <div class="recommended-badge">Recommended</div>
+          <div class="package-header">
+            <h3 class="package-name">Professional</h3>
+            <div class="package-price">
+              <span class="currency">£</span>
+              <span class="amount">1,450</span>
+            </div>
+            <p class="package-desc">Ideal for growing businesses</p>
+          </div>
+          <ul class="package-features">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Up to 10 pages
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Premium custom design
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Advanced animations & effects
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Blog/News section
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Advanced SEO optimization
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Newsletter integration
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              1 year free hosting
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              3 weeks delivery
+            </li>
+          </ul>
+          <a href="https://wa.me/447902844675?text=Hi%2C%20I'm%20interested%20in%20the%20Professional%20package%20(£1%2C450)" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn btn-primary">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Enterprise Package -->
+        <div class="package-card">
+          <div class="package-header">
+            <h3 class="package-name">Enterprise</h3>
+            <div class="package-price">
+              <span class="currency">£</span>
+              <span class="amount">2,850</span>
+              <span class="amount-suffix">+</span>
+            </div>
+            <p class="package-desc">For established businesses with complex needs</p>
+          </div>
+          <ul class="package-features">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Unlimited pages
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Fully bespoke design system
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              E-commerce functionality
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Custom integrations (CRM, ERP, etc.)
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Multi-language support
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Advanced analytics & reporting
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              1 year free hosting
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M16.6 5L7.5 14.1 3.4 10" stroke="#0091FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Custom timeline
+            </li>
+          </ul>
+          <a href="https://wa.me/447902844675?text=Hi%2C%20I'm%20interested%20in%20the%20Enterprise%20package" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn btn-outline">
+            Contact Us
+          </a>
+        </div>
+      </div>
+
+      <div class="packages-note">
+        <p><strong>🚀 Limited Availability:</strong> We're accepting only 5 new projects per month to ensure quality. Secure your spot today!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-choose-section">
+    <div class="container">
+      <h2 class="section-title">Why Choose WebnDigital?</h2>
+      <p class="section-subtitle">Not just another web agency - your technology partner for growth</p>
+      
+      <div class="why-choose-grid">
+        <div class="why-card">
+          <div class="why-number">01</div>
+          <h3>100% Bespoke, Zero Templates</h3>
+          <p>Every website is designed from scratch around your brand. No cookie-cutter templates, no compromises. Your business is unique - your website should be too.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-number">02</div>
+          <h3>Performance Guaranteed</h3>
+          <p>We guarantee 90+ scores on both SEO and Speed. Fast websites rank better on Google and convert more visitors into customers. Period.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-number">03</div>
+          <h3>Lifetime Support Included</h3>
+          <p>Other agencies disappear after launch. We're here for life. Technology consulting, strategic advice, and technical support - whenever you need it, at no extra cost.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-number">04</div>
+          <h3>Modern Technology Stack</h3>
+          <p>We use cutting-edge technologies (Astro, React, Next.js) that ensure your website stays fast, secure, and scalable as your business grows.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-number">05</div>
+          <h3>Transparent Process</h3>
+          <p>No hidden fees, no surprises. Clear timelines, regular updates, and direct communication throughout the entire project.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-number">06</div>
+          <h3>Results-Driven Approach</h3>
+          <p>We don't just build pretty websites - we build digital assets that drive real business results. More leads, more sales, more growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Guarantee Section -->
+  <section class="guarantee-section">
+    <div class="container">
+      <div class="guarantee-box">
+        <div class="guarantee-content">
+          <div class="guarantee-stars">★★★★★</div>
+          <h2 class="guarantee-title">Performance & Quality Guarantee</h2>
+          <p class="guarantee-text">We don't just promise quality - we guarantee it with measurable results</p>
+          
+          <div class="guarantee-badges">
+            <div class="guarantee-badge">
+              <div class="badge-circle">
+                <span class="badge-score">90+</span>
+              </div>
+              <div class="badge-label">
+                <strong>SEO Score</strong>
+                <span>Google Lighthouse</span>
+              </div>
+            </div>
+            <div class="guarantee-badge">
+              <div class="badge-circle">
+                <span class="badge-score">90+</span>
+              </div>
+              <div class="badge-label">
+                <strong>Speed Score</strong>
+                <span>Page load performance</span>
+              </div>
+            </div>
+            <div class="guarantee-badge">
+              <div class="badge-circle">
+                <span class="badge-score">100%</span>
+              </div>
+              <div class="badge-label">
+                <strong>Custom Theme</strong>
+                <span>Zero templates</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3 class="faq-question">How long does it take to build a website?</h3>
+          <p class="faq-answer">Starter packages typically take 2 weeks, Professional packages 3-4 weeks, and Enterprise projects are custom-scoped. We'll provide a detailed timeline during our initial consultation.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What happens after the first year of free hosting?</h3>
+          <p class="faq-answer">After the first year, hosting costs approximately £15-30/month depending on your traffic. You can choose to continue with us or move to another hosting provider - you own your website completely.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Can I update the website myself?</h3>
+          <p class="faq-answer">Yes! We can build you a simple CMS for easy content updates, or provide training on how to make changes. Alternatively, we offer maintenance packages starting from £50/month.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Do I own the website and all the code?</h3>
+          <p class="faq-answer">Absolutely! Once the project is completed and paid for, you own everything - the design, the code, and all assets. No lock-in, no licensing fees.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What's included in "lifetime technology consulting"?</h3>
+          <p class="faq-answer">You get ongoing access to our team for strategic advice, technical questions, growth planning, and consultation calls - at no extra cost, for as long as your website is live.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Why is this offer limited-time?</h3>
+          <p class="faq-answer">We limit the number of projects we take on each month (5 maximum) to ensure every client gets our full attention and highest quality work. Once spots are filled, new projects go to a waiting list.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">What if I need more features later?</h3>
+          <p class="faq-answer">No problem! Your website is built on a scalable foundation. We can add new features, pages, or functionality anytime at competitive rates.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3 class="faq-question">Do you provide payment plans?</h3>
+          <p class="faq-answer">Yes! We offer flexible payment options: 50% upfront to start, 50% on completion. For larger projects, we can discuss milestone-based payments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="final-cta-section">
+    <div class="container">
+      <div class="final-cta-box">
+        <h2 class="final-cta-title">Ready to Transform Your Online Presence?</h2>
+        <p class="final-cta-text">
+          Join the businesses who've chosen quality over templates. Start your project today and get a professional website that drives real results.
+        </p>
+        <div class="final-cta-buttons">
+          <a href="https://wa.me/447902844675?text=Hi%2C%20I'm%20ready%20to%20start%20my%20bespoke%20website%20project" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn btn-primary btn-lg">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="margin-right: 10px;">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"/>
+            </svg>
+            Start WhatsApp Chat Now
+          </a>
+          <a href="/contact" class="btn btn-secondary btn-lg">
+            Or Fill Contact Form
+          </a>
+        </div>
+        <p class="final-cta-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <strong>Only 5 spots available this month</strong> - First come, first served
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .landing-hero {
+    padding: 120px 0 80px 0;
+    background: linear-gradient(135deg, #f5f7fb 0%, #ffffff 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .landing-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 145, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .landing-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 145, 255, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #FFF4E6;
+    border: 1px solid #FFD699;
+    border-radius: 50px;
+    color: #B8630A;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  .hero-badge svg {
+    color: #FFB800;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text-dark);
+    margin: 0 0 24px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #0091FF 0%, #00C2FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-gray);
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-subtitle strong {
+    color: var(--color-text-dark);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-lg {
+    padding: 16px 32px;
+    font-size: 1.125rem;
+  }
+
+  .trust-badges {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .badge-icon {
+    font-size: 2rem;
+  }
+
+  .badge-text {
+    text-align: left;
+  }
+
+  .badge-text strong {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: 2px;
+  }
+
+  .badge-text span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-gray);
+  }
+
+  /* Included Section */
+  .included-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text-dark);
+    margin: 0 0 16px 0;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    text-align: center;
+    color: var(--color-text-gray);
+    margin: 0 0 60px 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+  }
+
+  .feature-card {
+    padding: 32px;
+    background: white;
+    border: 2px solid #F0F4F7;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .feature-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 24px rgba(0, 145, 255, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .feature-card.featured {
+    border-color: var(--color-primary);
+    background: linear-gradient(135deg, #f5fbff 0%, #ffffff 100%);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: var(--color-primary);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #E6F5FF 0%, #F0F9FF 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    margin-bottom: 24px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0 0 12px 0;
+  }
+
+  .feature-card > p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-gray);
+    margin: 0 0 20px 0;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+    font-size: 0.9375rem;
+    color: var(--color-text-gray);
+  }
+
+  .feature-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  /* Packages Section */
+  .packages-section {
+    padding: 80px 0;
+    background: #F7F9FC;
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+
+  .package-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    border: 2px solid #E5E8EB;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .package-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 32px rgba(0, 145, 255, 0.15);
+    transform: translateY(-8px);
+  }
+
+  .package-card.recommended {
+    border-color: var(--color-primary);
+    border-width: 3px;
+    box-shadow: 0 12px 32px rgba(0, 145, 255, 0.15);
+  }
+
+  .recommended-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #0091FF 0%, #00C2FF 100%);
+    color: white;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 145, 255, 0.3);
+  }
+
+  .package-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .package-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0 0 16px 0;
+  }
+
+  .package-price {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .currency {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-gray);
+    margin-top: 8px;
+  }
+
+  .amount {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .amount-suffix {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: 12px;
+  }
+
+  .package-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-gray);
+    margin: 0;
+  }
+
+  .package-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    flex-grow: 1;
+  }
+
+  .package-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #F0F4F7;
+    font-size: 0.9375rem;
+    color: var(--color-text-gray);
+  }
+
+  .package-features li:last-child {
+    border-bottom: none;
+  }
+
+  .package-features svg {
+    flex-shrink: 0;
+  }
+
+  .packages-note {
+    background: white;
+    border: 2px solid #FFD699;
+    border-radius: 12px;
+    padding: 20px 32px;
+    text-align: center;
+  }
+
+  .packages-note p {
+    margin: 0;
+    font-size: 1.125rem;
+    color: var(--color-text-dark);
+  }
+
+  /* Why Choose Section */
+  .why-choose-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .why-choose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  .why-card {
+    padding: 32px;
+    background: #F7F9FC;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .why-card:hover {
+    background: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  }
+
+  .why-number {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #0091FF 0%, #00C2FF 100%);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .why-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0 0 12px 0;
+  }
+
+  .why-card p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-gray);
+    margin: 0;
+  }
+
+  /* Guarantee Section */
+  .guarantee-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0A2E52 0%, #0D3A66 100%);
+  }
+
+  .guarantee-box {
+    background: white;
+    border-radius: 24px;
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .guarantee-stars {
+    font-size: 2rem;
+    color: #FFB800;
+    margin-bottom: 16px;
+    letter-spacing: 4px;
+  }
+
+  .guarantee-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0 0 16px 0;
+  }
+
+  .guarantee-text {
+    font-size: 1.125rem;
+    color: var(--color-text-gray);
+    margin: 0 0 48px 0;
+  }
+
+  .guarantee-badges {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .guarantee-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .badge-circle {
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #0A2E52 0%, #0D3A66 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(10, 46, 82, 0.25);
+  }
+
+  .badge-score {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+  }
+
+  .badge-label {
+    text-align: center;
+  }
+
+  .badge-label strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin-bottom: 4px;
+  }
+
+  .badge-label span {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-gray);
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+  }
+
+  .faq-item {
+    padding: 32px;
+    background: #F7F9FC;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: var(--color-primary);
+    background: white;
+    box-shadow: 0 4px 16px rgba(0, 145, 255, 0.1);
+  }
+
+  .faq-question {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+    margin: 0 0 12px 0;
+  }
+
+  .faq-answer {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-gray);
+    margin: 0;
+  }
+
+  /* Final CTA Section */
+  .final-cta-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f7fb 0%, #ffffff 100%);
+  }
+
+  .final-cta-box {
+    background: linear-gradient(135deg, #0A2E52 0%, #0D3A66 100%);
+    border-radius: 24px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .final-cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 16px 0;
+  }
+
+  .final-cta-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+  }
+
+  .final-cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .final-cta-note {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.25rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .guarantee-title {
+      font-size: 1.75rem;
+    }
+
+    .final-cta-title {
+      font-size: 1.75rem;
+    }
+
+    .final-cta-text {
+      font-size: 1rem;
+    }
+
+    .trust-badges {
+      gap: 16px;
+    }
+
+    .trust-badge {
+      flex-direction: column;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .badge-text {
+      text-align: center;
+    }
+
+    .guarantee-badges {
+      gap: 32px;
+    }
+
+    .badge-circle {
+      width: 110px;
+      height: 110px;
+    }
+
+    .badge-score {
+      font-size: 1.5rem;
+    }
+
+    .hero-cta,
+    .final-cta-buttons {
+      flex-direction: column;
+    }
+
+    .btn-lg {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .landing-hero {
+      padding: 80px 0 60px 0;
+    }
+
+    .hero-title {
+      font-size: 1.875rem;
+    }
+
+    .packages-grid,
+    .features-grid,
+    .why-choose-grid,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .guarantee-box,
+    .final-cta-box {
+      padding: 40px 24px;
+    }
+  }
+</style>
+
